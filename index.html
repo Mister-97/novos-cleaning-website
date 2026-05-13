@@ -92,6 +92,12 @@ nav.scrolled { background: rgba(13,13,13,0.95); backdrop-filter: blur(12px); bor
 .nav-links a:hover { opacity: 1; }
 .nav-cta { background: var(--lime) !important; color: var(--black) !important; opacity: 1 !important; padding: 10px 22px; border-radius: 100px; font-weight: 600 !important; transition: filter 0.2s !important; }
 .nav-cta:hover { filter: brightness(1.08); }
+.nav-dropdown { position: relative; }
+.nav-dropdown > a::after { content: ' ▾'; font-size: 10px; }
+.nav-dropdown-menu { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%); background: #141414; border: 1px solid #222; border-radius: 12px; padding: 6px; min-width: 200px; opacity: 0; visibility: hidden; transition: opacity 0.18s, visibility 0.18s; pointer-events: none; }
+.nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; pointer-events: all; }
+.nav-dropdown-menu a { display: block; padding: 10px 14px; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.55; border-radius: 8px; transition: background 0.15s, opacity 0.15s; }
+.nav-dropdown-menu a:hover { background: #1e1e1e; opacity: 1; }
 
 /* HERO */
 #hero {
@@ -360,7 +366,14 @@ footer { background: var(--black); padding: 80px 0 40px; border-top: 1px solid #
     </span>
   </a>
   <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
+    <li class="nav-dropdown">
+      <a href="#services">Services</a>
+      <div class="nav-dropdown-menu">
+        <a href="/standard-cleaning">Standard Cleaning</a>
+        <a href="/deep-cleaning">Deep Cleaning</a>
+        <a href="/move-out-cleaning">Move-Out Cleaning</a>
+      </div>
+    </li>
     <li><a href="#work">Our Work</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#reviews">Reviews</a></li>
@@ -419,7 +432,7 @@ footer { background: var(--black); padding: 80px 0 40px; border-top: 1px solid #
           <li>Dusting all surfaces</li>
           <li>Trash removal</li>
         </ul>
-        <a href="/standard-cleaning" class="service-cta">Learn more →</a>
+        <a href="/book" class="service-cta">Book now →</a>
       </div>
     </div>
     <div class="service-card" id="svc2">
@@ -436,7 +449,7 @@ footer { background: var(--black); padding: 80px 0 40px; border-top: 1px solid #
           <li>Window sills &amp; blinds</li>
           <li>Cabinet interiors</li>
         </ul>
-        <a href="/deep-cleaning" class="service-cta">Learn more →</a>
+        <a href="/book" class="service-cta">Book now →</a>
       </div>
     </div>
     <div class="service-card" id="svc3">
@@ -453,7 +466,7 @@ footer { background: var(--black); padding: 80px 0 40px; border-top: 1px solid #
           <li>Garage sweep</li>
           <li>Deposit-ready finish</li>
         </ul>
-        <a href="/move-out-cleaning" class="service-cta">Learn more →</a>
+        <a href="/book" class="service-cta">Book now →</a>
       </div>
     </div>
   </div>

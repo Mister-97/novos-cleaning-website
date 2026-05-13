@@ -43,10 +43,10 @@
     "@type": "FAQPage",
     "mainEntity": [
       {"@type": "Question", "name": "What does a move-out cleaning include in Indianapolis?", "acceptedAnswer": {"@type": "Answer", "text": "Novo's Cleaning move-out service includes everything in a deep clean plus: spot-cleaning walls, inside all cabinets scrubbed, inside all appliances (oven, fridge, dishwasher), light fixtures and switch plates wiped, closets swept and wiped, and garage swept if applicable. It prepares the home to pass a landlord walkthrough."}},
-      {"@type": "Question", "name": "Will a move-out cleaning help me get my deposit back?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Novo's Cleaning move-out service is designed specifically to meet landlord and property manager standards in Indianapolis. We clean every surface that inspectors check — the same checklist landlords use."}},
-      {"@type": "Question", "name": "Do you clean empty homes and apartments?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — move-out cleaning is done on empty properties. All furniture should be removed before we arrive. This lets us clean under, behind, and inside everything without obstructions."}},
+      {"@type": "Question", "name": "Will a move-out cleaning help me get my deposit back?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Novo's Cleaning move-out service is designed specifically to meet landlord and property manager standards in Indianapolis. We clean every surface that inspectors check, following the same standards landlords use."}},
+      {"@type": "Question", "name": "Do you clean empty homes and apartments?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Move-out cleaning is done on empty properties. All furniture should be removed before we arrive so we can clean under, behind, and inside everything without obstructions."}},
       {"@type": "Question", "name": "How much does move-out cleaning cost in Indianapolis?", "acceptedAnswer": {"@type": "Answer", "text": "Novo's Cleaning offers flat-rate pricing for move-out cleaning in Indianapolis and surrounding areas. Price depends on square footage. Call 317-489-0644 or book online for an instant quote."}},
-      {"@type": "Question", "name": "Can you do a move-in cleaning for a new home?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely. Move-in cleaning is the same thorough service applied to a home before you move in — making sure it's spotless even if the previous owners or landlord claims it was cleaned. Great peace of mind before you bring your belongings in."}},
+      {"@type": "Question", "name": "Can you do a move-in cleaning for a new home?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely. Move-in cleaning is the same thorough service applied to a home before you move in, making sure it's spotless even if the previous owners or landlord claims it was cleaned. Great peace of mind before you bring your belongings in."}},
       {"@type": "Question", "name": "What areas does Novo's Cleaning serve for move-out cleaning?", "acceptedAnswer": {"@type": "Answer", "text": "Novo's Cleaning provides move-out cleaning in Indianapolis, Carmel, Fishers, Westfield, Noblesville, Zionsville, Whitestown, Brownsburg, Avon, Plainfield, Bargersville, Geist Reservoir, Fortville, McCordsville, New Palestine, Greenfield, and Trafalgar, Indiana."}}
     ]
   }
@@ -67,6 +67,12 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.97);backdrop-fi
 .nav-links a{font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;opacity:0.55;transition:opacity 0.2s;}
 .nav-links a:hover{opacity:1;}
 .nav-cta{background:var(--lime)!important;color:var(--black)!important;opacity:1!important;padding:9px 20px;border-radius:100px;font-weight:600!important;}
+.nav-dropdown{position:relative;}
+.nav-dropdown>a::after{content:' ▾';font-size:10px;}
+.nav-dropdown-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#141414;border:1px solid #222;border-radius:12px;padding:6px;min-width:200px;opacity:0;visibility:hidden;transition:opacity 0.18s,visibility 0.18s;pointer-events:none;}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;pointer-events:all;}
+.nav-dropdown-menu a{display:block;padding:10px 14px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;opacity:0.55;border-radius:8px;transition:background 0.15s,opacity 0.15s;}
+.nav-dropdown-menu a:hover{background:#1e1e1e;opacity:1;}
 
 .hero{padding:100px 48px 80px;max-width:1000px;margin:0 auto;}
 .breadcrumb{font-size:12px;opacity:0.35;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;}
@@ -144,7 +150,14 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
     </span>
   </a>
   <ul class="nav-links">
-    <li><a href="/#services">Services</a></li>
+    <li class="nav-dropdown">
+      <a href="/#services">Services</a>
+      <div class="nav-dropdown-menu">
+        <a href="/standard-cleaning">Standard Cleaning</a>
+        <a href="/deep-cleaning">Deep Cleaning</a>
+        <a href="/move-out-cleaning">Move-Out Cleaning</a>
+      </div>
+    </li>
     <li><a href="/#work">Our Work</a></li>
     <li><a href="/#faq">FAQ</a></li>
     <li><a href="/#reviews">Reviews</a></li>
@@ -154,12 +167,8 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
 
 <div class="hero">
   <p class="breadcrumb"><a href="/">Home</a><span>›</span>Move-Out Cleaning</p>
-  <div class="badge">
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-    Deposit-Back Ready
-  </div>
   <h1>MOVE-OUT<br /><span class="lime">CLEANING.</span></h1>
-  <p class="hero-sub">Moving out of a rental or selling your home? We clean every inch of the empty property — walls, inside all cabinets, appliances, closets — so you pass the landlord walkthrough and get every dollar of your deposit back.</p>
+  <p class="hero-sub">Moving out of a rental or selling your home? We clean every inch of the empty property. Walls, inside all cabinets, appliances, closets. We leave it spotless so you can walk away confident.</p>
   <a href="/book" class="btn-primary">Book a Move-Out Clean</a>
 </div>
 
@@ -169,7 +178,7 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
 
   <div class="guarantee-bar">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8F400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    <p><strong>Landlord & Realtor Approved.</strong> We follow the same checklist property managers use for move-out inspections — so nothing gets missed.</p>
+    <p><strong>Built for move-outs.</strong> We go room by room and clean every surface, corner, and fixture so the property is truly ready for the next person walking through.</p>
   </div>
 
   <div class="includes-grid">
@@ -191,7 +200,7 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
       <div class="include-dot"></div>
       <div>
         <p class="include-title">ALL CABINET INTERIORS</p>
-        <p class="include-desc">Every kitchen and bathroom cabinet and drawer scrubbed inside — corners, shelves, and door edges. Left spotless and odor-free.</p>
+        <p class="include-desc">Every kitchen and bathroom cabinet and drawer scrubbed inside, including corners, shelves, and door edges. Left spotless and odor-free.</p>
       </div>
     </div>
     <div class="include-item">
@@ -264,15 +273,15 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
     </div>
     <div class="faq-item">
       <button class="faq-q"><span>Does the home need to be empty?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
-      <div class="faq-a"><div class="faq-a-inner">Yes — move-out cleaning is done on empty properties with all furniture removed. This allows us to clean under and behind everything, reach corners that are normally blocked, and do a proper landlord-ready clean.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. Move-out cleaning is done on empty properties with all furniture removed. This allows us to clean under and behind everything, reach corners that are normally blocked, and do a proper landlord-ready clean.</div></div>
     </div>
     <div class="faq-item">
       <button class="faq-q"><span>Can you do move-in cleaning too?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
-      <div class="faq-a"><div class="faq-a-inner">Yes — move-in cleaning is the same thorough service applied before you bring your belongings in. Great for buyers moving into a newly purchased home, or renters who want to make sure the place is truly clean before moving in.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. Move-in cleaning is the same thorough service applied before you bring your belongings in. Great for buyers moving into a newly purchased home, or renters who want to make sure the place is truly clean before moving in.</div></div>
     </div>
     <div class="faq-item">
       <button class="faq-q"><span>Will this help me get my deposit back?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
-      <div class="faq-a"><div class="faq-a-inner">Our move-out clean follows the same checklist landlords and property managers in Indianapolis use for inspections. We cover every item they look for — so you walk in confident on walkthrough day.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Our move-out clean follows the same checklist landlords and property managers in Indianapolis use for inspections. We cover every item they look for, so you walk in confident on walkthrough day.</div></div>
     </div>
     <div class="faq-item">
       <button class="faq-q"><span>How much does move-out cleaning cost?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
@@ -303,7 +312,7 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
 </div>
 
 <div class="cta-band">
-  <h2>READY TO GET YOUR DEPOSIT BACK?</h2>
+  <h2>READY TO MOVE OUT CLEAN?</h2>
   <p>Flat-rate pricing. Same-day availability. Fully insured.</p>
   <a href="/book" class="btn-dark">Book Now</a>
 </div>

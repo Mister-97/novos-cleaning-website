@@ -25,7 +25,7 @@
     "address": {"@type": "PostalAddress", "addressLocality": "Indianapolis", "addressRegion": "IN", "addressCountry": "US"}
   },
   "areaServed": ["Indianapolis", "Carmel", "Fishers", "Zionsville", "Westfield", "Noblesville", "Brownsburg", "Whitestown", "Bargersville", "McCordsville", "Trafalgar", "Avon", "Plainfield", "Fortville", "New Palestine", "Greenfield", "Geist Reservoir"],
-  "description": "Deep cleaning service that goes beyond standard cleaning — includes inside oven, inside fridge, baseboards, vents, window sills, cabinet interiors, and detailed bathroom scrubbing.",
+  "description": "Deep cleaning service that goes beyond standard cleaning. Includes inside oven, inside fridge, baseboards, vents, window sills, cabinet interiors, and detailed bathroom scrubbing.",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Deep Cleaning Includes",
@@ -45,7 +45,7 @@
       {"@type": "Question", "name": "What does a deep cleaning include in Indianapolis?", "acceptedAnswer": {"@type": "Answer", "text": "Novo's Cleaning deep service includes everything in a standard clean plus: inside oven, inside refrigerator, baseboards scrubbed, vents and air returns dusted, window sills and tracks cleaned, and cabinet interiors wiped down."}},
       {"@type": "Question", "name": "How long does a deep cleaning take?", "acceptedAnswer": {"@type": "Answer", "text": "A deep cleaning typically takes 3–6 hours depending on the size of the home and how long since the last thorough clean. First-time clients usually benefit most from starting with a deep clean."}},
       {"@type": "Question", "name": "How much does a deep cleaning cost in Indianapolis?", "acceptedAnswer": {"@type": "Answer", "text": "Novo's Cleaning offers flat-rate pricing for deep cleaning in Indianapolis and surrounding areas. Call 317-489-0644 or book online for an instant quote based on your home's size."}},
-      {"@type": "Question", "name": "Should I get a deep cleaning before switching to regular cleanings?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — most clients start with a deep clean so the home is at a high baseline, then switch to bi-weekly or monthly standard cleanings to maintain it. This is the most cost-effective approach."}},
+      {"@type": "Question", "name": "Should I get a deep cleaning before switching to regular cleanings?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Most clients start with a deep clean so the home is at a high baseline, then switch to bi-weekly or monthly standard cleanings to maintain it. It's the most cost-effective approach."}},
       {"@type": "Question", "name": "What areas in Indianapolis does Novo's Cleaning serve for deep cleaning?", "acceptedAnswer": {"@type": "Answer", "text": "Novo's Cleaning provides deep cleaning services in Indianapolis, Carmel, Fishers, Westfield, Noblesville, Zionsville, Brownsburg, Whitestown, Avon, Plainfield, Bargersville, Geist Reservoir, Fortville, McCordsville, New Palestine, Greenfield, and Trafalgar."}}
     ]
   }
@@ -66,6 +66,12 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.97);backdrop-fi
 .nav-links a{font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;opacity:0.55;transition:opacity 0.2s;}
 .nav-links a:hover{opacity:1;}
 .nav-cta{background:var(--lime)!important;color:var(--black)!important;opacity:1!important;padding:9px 20px;border-radius:100px;font-weight:600!important;}
+.nav-dropdown{position:relative;}
+.nav-dropdown>a::after{content:' ▾';font-size:10px;}
+.nav-dropdown-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#141414;border:1px solid #222;border-radius:12px;padding:6px;min-width:200px;opacity:0;visibility:hidden;transition:opacity 0.18s,visibility 0.18s;pointer-events:none;}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;pointer-events:all;}
+.nav-dropdown-menu a{display:block;padding:10px 14px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;opacity:0.55;border-radius:8px;transition:background 0.15s,opacity 0.15s;}
+.nav-dropdown-menu a:hover{background:#1e1e1e;opacity:1;}
 
 .hero{padding:100px 48px 80px;max-width:1000px;margin:0 auto;}
 .breadcrumb{font-size:12px;opacity:0.35;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;}
@@ -139,7 +145,14 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
     </span>
   </a>
   <ul class="nav-links">
-    <li><a href="/#services">Services</a></li>
+    <li class="nav-dropdown">
+      <a href="/#services">Services</a>
+      <div class="nav-dropdown-menu">
+        <a href="/standard-cleaning">Standard Cleaning</a>
+        <a href="/deep-cleaning">Deep Cleaning</a>
+        <a href="/move-out-cleaning">Move-Out Cleaning</a>
+      </div>
+    </li>
     <li><a href="/#work">Our Work</a></li>
     <li><a href="/#faq">FAQ</a></li>
     <li><a href="/#reviews">Reviews</a></li>
@@ -154,7 +167,7 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
     Most Thorough Clean
   </div>
   <h1>DEEP CLEANING<br /><span class="lime">SERVICE.</span></h1>
-  <p class="hero-sub">Go beyond the surface. Our deep clean tackles the places that standard cleaning skips — inside appliances, behind fixtures, baseboards, vents, and cabinet interiors. Perfect for first-time clients and seasonal refreshes.</p>
+  <p class="hero-sub">Go beyond the surface. Our deep clean tackles the places that standard cleaning skips: inside appliances, behind fixtures, baseboards, vents, and cabinet interiors. Perfect for first-time clients and seasonal refreshes.</p>
   <a href="/book" class="btn-primary">Book a Deep Clean</a>
 </div>
 
@@ -166,7 +179,7 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
       <div class="include-dot"></div>
       <div>
         <p class="include-title">EVERYTHING IN STANDARD</p>
-        <p class="include-desc">All kitchen surfaces, bathrooms, vacuuming, mopping, dusting, and trash removal — the full standard clean included.</p>
+        <p class="include-desc">All kitchen surfaces, bathrooms, vacuuming, mopping, dusting, and trash removal. The full standard clean, included.</p>
       </div>
     </div>
     <div class="include-item">
@@ -187,7 +200,7 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
       <div class="include-dot"></div>
       <div>
         <p class="include-title">BASEBOARDS & TRIM</p>
-        <p class="include-desc">Every baseboard and door trim scrubbed with a damp cloth — not just dusted. Gets the grime that collects over time.</p>
+        <p class="include-desc">Every baseboard and door trim scrubbed with a damp cloth, not just dusted. Gets the grime that collects over time.</p>
       </div>
     </div>
     <div class="include-item">
@@ -253,11 +266,11 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
     </div>
     <div class="faq-item">
       <button class="faq-q"><span>How long does a deep clean take?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
-      <div class="faq-a"><div class="faq-a-inner">Typically 3–6 hours depending on home size and how long it's been since a thorough cleaning. We take the time needed to do it right — no rushing through the extras.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Typically 3–6 hours depending on home size and how long it's been since a thorough cleaning. We take the time needed to do it right, no rushing through the extras.</div></div>
     </div>
     <div class="faq-item">
       <button class="faq-q"><span>Should I start with a deep clean?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
-      <div class="faq-a"><div class="faq-a-inner">Yes — we recommend first-time clients book a deep clean so your home starts at a high baseline. After that, bi-weekly or monthly standard cleanings will keep it there efficiently.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. We recommend first-time clients book a deep clean so your home starts at a high baseline. After that, bi-weekly or monthly standard cleanings will keep it there efficiently.</div></div>
     </div>
     <div class="faq-item">
       <button class="faq-q"><span>Do I need to be home during the deep clean?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
@@ -265,7 +278,7 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
     </div>
     <div class="faq-item">
       <button class="faq-q"><span>How is deep cleaning different from move-out cleaning?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
-      <div class="faq-a"><div class="faq-a-inner">A deep clean is for homes you're staying in — it targets neglected areas while you continue living there. A <a href="/move-out-cleaning" style="color:var(--lime);">move-out clean</a> is done on an empty property and includes walls, inside all cabinets, and everything needed to pass a landlord inspection or prepare for new owners.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">A deep clean is for homes you're staying in. It targets neglected areas while you continue living there. A <a href="/move-out-cleaning" style="color:var(--lime);">move-out clean</a> is done on an empty property and includes walls, inside all cabinets, and everything needed to pass a landlord inspection or prepare for new owners.</div></div>
     </div>
   </div>
 </div>
