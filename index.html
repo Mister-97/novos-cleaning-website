@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Novo's Cleaning — We Make It Feel Brand New</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #0D0D0D;
+  --lime: #C8F400;
+  --white: #F5F5F0;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: var(--font-body); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 48px;
+  transition: background 0.3s, backdrop-filter 0.3s;
+}
+nav.scrolled { background: rgba(13,13,13,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.nav-logo { text-decoration: none; display: flex; align-items: center; }
+.nav-logo-mark { display: flex; flex-direction: column; line-height: 1.1; }
+.nav-logo-mark .logo-main { font-family: var(--font-display); font-size: 28px; color: var(--lime); letter-spacing: 0.05em; }
+.nav-logo-mark .logo-sub { font-family: var(--font-body); font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--lime); opacity: 0.65; }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); text-decoration: none; opacity: 0.55; transition: opacity 0.2s; }
+.nav-links a:hover { opacity: 1; }
+.nav-cta { background: var(--lime) !important; color: var(--black) !important; opacity: 1 !important; padding: 10px 22px; border-radius: 100px; font-weight: 600 !important; transition: filter 0.2s !important; }
+.nav-cta:hover { filter: brightness(1.08); }
+
+/* HERO */
+#hero {
+  min-height: 100svh; background: var(--black);
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  position: relative; overflow: hidden; padding: 0 48px;
+  padding-top: 140px;
+}
+.hero-content { display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: center; padding-bottom: 20px; }
+.hero-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); opacity: 0.35; margin-bottom: 24px; }
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(70px, 11vw, 160px);
+  line-height: 0.93; letter-spacing: 0.01em; text-align: center; color: var(--white);
+}
+.hero-headline .lime { color: var(--lime); }
+.hero-sub { font-size: 17px; font-weight: 300; color: var(--white); opacity: 0.38; margin-top: 24px; letter-spacing: 0.06em; text-align: center; }
+.hero-cta-row { display: flex; align-items: center; gap: 14px; margin-top: 36px; }
+.btn-primary { background: var(--lime); color: var(--black); font-family: var(--font-body); font-size: 18px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 22px 54px; border-radius: 100px; border: none; cursor: pointer; text-decoration: none; transition: filter 0.2s, transform 0.15s, box-shadow 0.2s; display: inline-block; box-shadow: 0 0 0 0 rgba(200,244,0,0.4), 0 8px 30px rgba(200,244,0,0.18); }
+.btn-primary:hover { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 0 0 6px rgba(200,244,0,0.15), 0 12px 36px rgba(200,244,0,0.28); }
+@keyframes ctaPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(200,244,0,0.5), 0 8px 30px rgba(200,244,0,0.18); } 50% { box-shadow: 0 0 0 10px rgba(200,244,0,0), 0 8px 30px rgba(200,244,0,0.18); } }
+#heroBookBtn { animation: ctaPulse 2.4s ease-in-out infinite; }
+.btn-ghost { background: transparent; color: var(--white); font-family: var(--font-body); font-size: 14px; font-weight: 500; letter-spacing: 0.05em; padding: 15px 26px; border-radius: 100px; border: 1.5px solid rgba(245,245,240,0.2); cursor: pointer; text-decoration: none; transition: border-color 0.2s, transform 0.15s; display: inline-block; }
+.btn-ghost:hover { border-color: rgba(245,245,240,0.6); transform: translateY(-2px); }
+.hero-gecko { width: clamp(500px, 72vw, 960px); display: block; margin-top: 32px; align-self: center; animation: float 7s ease-in-out infinite; filter: drop-shadow(0 0 60px rgba(200,244,0,0.06)); }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+/* MARQUEE */
+.marquee-wrap { background: #0a0a0a; padding: 16px 0; overflow: hidden; white-space: nowrap; border-top: 1px solid #1a1a1a; }
+.marquee-track { display: inline-flex; animation: marquee 24s linear infinite; }
+.marquee-item { font-family: var(--font-display); font-size: 20px; letter-spacing: 0.1em; color: var(--white); opacity: 0.7; padding: 0 36px; flex-shrink: 0; }
+.marquee-item .dot { color: var(--lime); opacity: 1; }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* SHARED */
+section { width: 100%; }
+.section-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+.section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.35; margin-bottom: 18px; color: inherit; }
+.section-title { font-family: var(--font-display); font-size: clamp(46px, 5.5vw, 82px); line-height: 1; letter-spacing: 0.02em; color: inherit; }
+
+/* HOW IT WORKS */
+#how { background: var(--black); padding: 120px 0; color: var(--white); }
+.steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 60px; }
+.step-card { background: #141414; padding: 44px 38px; position: relative; overflow: hidden; transition: background 0.2s; }
+.step-card:hover { background: #1a1a1a; }
+.step-num { font-family: var(--font-display); font-size: 96px; line-height: 1; color: var(--lime); opacity: 0.1; position: absolute; top: 16px; right: 20px; }
+.step-icon { width: 46px; height: 46px; background: var(--lime); border-radius: 13px; display: flex; align-items: center; justify-content: center; margin-bottom: 26px; }
+.step-icon svg { width: 22px; height: 22px; }
+.step-title { font-family: var(--font-display); font-size: 30px; letter-spacing: 0.02em; color: var(--white); margin-bottom: 10px; }
+.step-desc { font-size: 14px; font-weight: 300; color: var(--white); opacity: 0.5; line-height: 1.65; }
+
+/* WHY */
+#why { background: #111; padding: 120px 0; color: var(--white); }
+.why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; margin-top: 60px; }
+.why-card { background: #161616; border-radius: 0; padding: 34px 30px; transition: background 0.2s; }
+.why-card:hover { background: #1c1c1c; }
+.why-icon { width: 40px; height: 40px; border-radius: 11px; background: rgba(200,244,0,0.12); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.why-icon svg { width: 20px; height: 20px; }
+.why-title { font-family: var(--font-display); font-size: 22px; letter-spacing: 0.02em; color: var(--white); margin-bottom: 7px; }
+.why-desc { font-size: 13px; font-weight: 300; color: var(--white); opacity: 0.45; line-height: 1.6; }
+
+/* SERVICES */
+#services { background: var(--black); padding: 120px 0; color: var(--white); }
+.services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 60px; }
+.service-card { background: #141414; display: flex; flex-direction: column; position: relative; overflow: hidden; cursor: pointer; transition: background 0.2s; }
+.service-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--lime); transform:scaleX(0); transform-origin:left; transition:transform 0.3s; z-index:3; }
+.service-card:hover { background: #1a1a1a; }
+.service-card:hover::after { transform: scaleX(1); }
+.service-card:hover .service-img img { transform: scale(1.06); }
+.service-img { position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; background: #0a0a0a; }
+.service-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
+.service-img::after { content:''; position:absolute; inset:0; background: linear-gradient(180deg, rgba(13,13,13,0) 50%, rgba(13,13,13,0.85) 100%); pointer-events:none; }
+.service-body { padding: 38px 42px 46px; display: flex; flex-direction: column; gap: 14px; }
+.service-type { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); }
+.service-name { font-family: var(--font-display); font-size: 38px; letter-spacing: 0.02em; color: var(--white); }
+.service-includes { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-top: 6px; }
+.service-includes li { font-size: 13px; font-weight: 300; color: var(--white); opacity: 0.55; display: flex; align-items: center; gap: 8px; }
+.service-includes li::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--lime); flex-shrink:0; }
+.service-cta { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-size: 13px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--lime); cursor: pointer; }
+
+/* OUR WORK */
+#work { background: #0a0a0a; padding: 120px 0; color: var(--white); overflow: hidden; }
+.work-stage { position: relative; margin-top: 60px; height: 560px; perspective: 1400px; }
+.work-card { position: absolute; top: 50%; left: 50%; width: 480px; height: 540px; margin: -270px 0 0 -240px; border-radius: 6px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.55); transition: transform 0.7s cubic-bezier(.2,.7,.2,1), opacity 0.5s, filter 0.5s; cursor: pointer; background: #141414; }
+.work-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.work-card .work-tag { position: absolute; bottom: 18px; left: 18px; background: var(--lime); color: var(--black); padding: 6px 14px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; }
+.work-controls { display: flex; gap: 14px; justify-content: center; margin-top: 36px; }
+.work-btn { background: transparent; border: 1.5px solid rgba(245,245,240,0.2); color: var(--white); width: 54px; height: 54px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.work-btn:hover { background: var(--lime); border-color: var(--lime); color: var(--black); transform: scale(1.06); }
+.work-shuffle { padding: 0 26px; width: auto; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; }
+.work-counter { display: inline-flex; align-items: center; padding: 0 22px; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: rgba(245,245,240,0.45); font-variant-numeric: tabular-nums; }
+
+/* FAQ */
+#faq { background: var(--black); padding: 120px 0; color: var(--white); }
+.faq-wrap { max-width: 880px; margin: 60px auto 0; }
+.faq-item { border-top: 1px solid rgba(245,245,240,0.1); }
+.faq-item:last-child { border-bottom: 1px solid rgba(245,245,240,0.1); }
+.faq-q { width: 100%; background: transparent; border: none; color: var(--white); padding: 28px 0; display: flex; justify-content: space-between; align-items: center; gap: 24px; cursor: pointer; text-align: left; font-family: var(--font-display); font-size: clamp(20px, 2.2vw, 26px); letter-spacing: 0.01em; }
+.faq-q .faq-icon { flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%; background: rgba(200,244,0,0.08); display: flex; align-items: center; justify-content: center; transition: all 0.3s; color: var(--lime); }
+.faq-item.open .faq-icon { background: var(--lime); color: var(--black); transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.faq-a-inner { padding: 0 0 28px 0; font-size: 15px; line-height: 1.7; color: rgba(245,245,240,0.65); font-weight: 300; max-width: 720px; }
+
+/* TRUST */
+#trust { background: var(--lime); padding: 100px 0; overflow: hidden; }
+.trust-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; }
+.trust-badges { display: flex; flex-direction: column; gap: 26px; padding-bottom: 40px; }
+.trust-badge { display: flex; align-items: flex-start; gap: 18px; }
+.badge-icon { width: 50px; height: 50px; border-radius: 13px; background: var(--black); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.badge-icon svg { width: 24px; height: 24px; }
+.badge-text-head { font-family: var(--font-display); font-size: 21px; letter-spacing: 0.02em; color: var(--black); margin-bottom: 3px; }
+.badge-text-sub { font-size: 13px; font-weight: 300; color: var(--black); opacity: 0.58; line-height: 1.5; }
+.trust-gecko { width: 100%; max-width: 480px; display: block; margin: 0 auto; }
+.trust-cta { margin-top: 18px; }
+.btn-dark { background: var(--black); color: var(--lime); font-family: var(--font-body); font-size: 18px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 22px 54px; border-radius: 100px; border: none; cursor: pointer; text-decoration: none; transition: filter 0.2s, transform 0.15s, box-shadow 0.2s; display: inline-block; box-shadow: 0 8px 30px rgba(0,0,0,0.18); }
+.btn-dark:hover { filter: brightness(1.2); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(0,0,0,0.28); }
+
+/* REVIEWS */
+#reviews { background: var(--black); padding: 120px 0; color: var(--white); }
+.reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 60px; }
+.review-card { background: #0f0f0f; padding: 38px 34px; display: flex; flex-direction: column; gap: 18px; }
+.stars { display: flex; gap: 3px; }
+.star { width: 15px; height: 15px; color: var(--lime); }
+.review-text { font-size: 15px; font-weight: 300; color: var(--white); opacity: 0.7; line-height: 1.72; flex: 1; }
+.reviewer-name { font-size: 13px; font-weight: 600; color: var(--white); }
+.reviewer-loc { font-size: 12px; font-weight: 300; opacity: 0.3; letter-spacing: 0.05em; }
+
+/* FOOTER */
+footer { background: var(--black); padding: 80px 0 40px; border-top: 1px solid #181818; }
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; padding-bottom: 56px; border-bottom: 1px solid #1a1a1a; }
+.footer-brand-name { font-family: var(--font-display); font-size: 60px; letter-spacing: 0.04em; color: rgba(200,244,0,0.22); line-height: 1; margin-bottom: 14px; }
+.footer-tagline { font-size: 13px; font-weight: 300; color: var(--white); opacity: 0.3; letter-spacing: 0.07em; }
+.footer-col-title { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--white); opacity: 0.25; margin-bottom: 18px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.footer-links a { font-size: 13px; font-weight: 300; color: var(--white); text-decoration: none; opacity: 0.5; transition: opacity 0.2s; }
+.footer-links a:hover { opacity: 1; }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; }
+.footer-copy { font-size: 11px; font-weight: 300; color: var(--white); opacity: 0.2; letter-spacing: 0.05em; }
+.footer-socials { display: flex; gap: 12px; }
+.social-btn { width: 34px; height: 34px; border-radius: 50%; border: 1px solid #252525; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; text-decoration: none; }
+.social-btn:hover { border-color: var(--lime); background: var(--lime); }
+.social-btn svg { width: 15px; height: 15px; fill: var(--white); }
+.social-btn:hover svg { fill: var(--black); }
+
+/* MODAL */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal { background: var(--white); color: var(--black); border-radius: 22px; width: 100%; max-width: 680px; padding: 36px 36px 28px; position: relative; transform: translateY(24px); transition: transform 0.3s; margin: 20px; max-height: 90vh; overflow-y: auto; }
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal-close { position: absolute; top: 18px; right: 18px; width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid rgba(0,0,0,0.1); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: background 0.2s; }
+.modal-close:hover { background: #eee; }
+.modal-title { font-family: var(--font-display); font-size: 40px; letter-spacing: 0.02em; color: var(--black); }
+.modal-body { font-size: 15px; line-height: 1.65; color: rgba(0,0,0,0.6); margin-top: 14px; font-weight: 300; }
+
+/* FADE UP */
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* IMAGE PLACEHOLDERS */
+.img-ph {
+  width: 100%; height: 100%;
+  background: #141414;
+  display: flex; align-items: center; justify-content: center;
+}
+.img-ph-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(255,255,255,0.1);
+  font-family: var(--font-body);
+}
+.hero-gecko {
+  width: clamp(500px, 72vw, 960px); display: block; margin-top: 32px;
+  align-self: center; animation: float 7s ease-in-out infinite;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-mark">
+      <span class="logo-main">NOVO'S</span>
+      <span class="logo-sub">CLEANING</span>
+    </span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Our Work</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#booking" class="nav-cta" id="navBookBtn">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <h1 class="hero-headline">WE MAKE IT<br /><span class="lime">BRAND NEW.</span></h1>
+    <p class="hero-sub">We Make It Feel Brand New</p>
+    <div class="hero-cta-row">
+      <a href="#booking" class="btn-primary" id="heroBookBtn">Book Now</a>
+    </div>
+  </div>
+  <img src="novos cleaning mascot/20.png" alt="Novo's mascot peeking" class="hero-gecko" />
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">WEEKEND AVAILABILITY <span class="dot">✦</span></span>
+    <span class="marquee-item">60-SECOND BOOKING <span class="dot">✦</span></span>
+    <span class="marquee-item">FLAT RATE PRICING <span class="dot">✦</span></span>
+    <span class="marquee-item">GPS VERIFIED <span class="dot">✦</span></span>
+    <span class="marquee-item">FULLY INSURED <span class="dot">✦</span></span>
+    <span class="marquee-item">BACKGROUND CHECKED <span class="dot">✦</span></span>
+    <span class="marquee-item">WEEKEND AVAILABILITY <span class="dot">✦</span></span>
+    <span class="marquee-item">60-SECOND BOOKING <span class="dot">✦</span></span>
+    <span class="marquee-item">FLAT RATE PRICING <span class="dot">✦</span></span>
+    <span class="marquee-item">GPS VERIFIED <span class="dot">✦</span></span>
+    <span class="marquee-item">FULLY INSURED <span class="dot">✦</span></span>
+    <span class="marquee-item">BACKGROUND CHECKED <span class="dot">✦</span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <p class="section-label fade-up">Our Services</p>
+    <h2 class="section-title fade-up">PICK YOUR<br />CLEAN.</h2>
+  </div>
+  <div class="services-grid fade-up" style="margin-top:60px">
+    <div class="service-card" id="svc1">
+      <div class="service-img">
+        <img src="standard cleaning.webp" alt="Standard clean home" />
+      </div>
+      <div class="service-body">
+        <span class="service-type">Standard</span>
+        <h3 class="service-name">STANDARD CLEAN</h3>
+        <ul class="service-includes">
+          <li>Kitchen surfaces &amp; sink</li>
+          <li>Bathrooms (2 included)</li>
+          <li>Vacuuming &amp; mopping</li>
+          <li>Dusting all surfaces</li>
+          <li>Trash removal</li>
+        </ul>
+        <span class="service-cta">Book now →</span>
+      </div>
+    </div>
+    <div class="service-card" id="svc2">
+      <div class="service-img">
+        <img src="deep cleaning.jpg" alt="Deep clean dining room" />
+      </div>
+      <div class="service-body">
+        <span class="service-type">Deep Clean</span>
+        <h3 class="service-name">DEEP CLEAN</h3>
+        <ul class="service-includes">
+          <li>Everything in Standard</li>
+          <li>Inside oven &amp; fridge</li>
+          <li>Baseboards &amp; vents</li>
+          <li>Window sills &amp; blinds</li>
+          <li>Cabinet interiors</li>
+        </ul>
+        <span class="service-cta">Book now →</span>
+      </div>
+    </div>
+    <div class="service-card" id="svc3">
+      <div class="service-img">
+        <img src="move out.webp" alt="Move in / out clean bathroom" style="object-position: center 75%;" />
+      </div>
+      <div class="service-body">
+        <span class="service-type">Move In / Out</span>
+        <h3 class="service-name">MOVE CLEAN</h3>
+        <ul class="service-includes">
+          <li>Everything in Deep Clean</li>
+          <li>Empty property specialist</li>
+          <li>Walls wiped down</li>
+          <li>Garage sweep</li>
+          <li>Deposit-ready finish</li>
+        </ul>
+        <span class="service-cta">Book now →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR WORK -->
+<section id="work">
+  <div class="section-inner">
+    <p class="section-label fade-up">Our Work</p>
+    <h2 class="section-title fade-up">SEE THE<br />DIFFERENCE.</h2>
+  </div>
+  <div class="work-stage fade-up" id="workStage"></div>
+  <div class="work-controls fade-up">
+    <button class="work-btn" id="workPrev" aria-label="Previous">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="work-btn work-shuffle" id="workShuffle">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+      Shuffle
+    </button>
+    <span class="work-counter" id="workCounter">01 / 05</span>
+    <button class="work-btn" id="workNext" aria-label="Next">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <p class="section-label fade-up">Questions</p>
+    <h2 class="section-title fade-up">GOOD TO<br />KNOW.</h2>
+    <div class="faq-wrap fade-up">
+      <div class="faq-item">
+        <button class="faq-q"><span>How quickly can you come out?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Most weeks we have same-day or next-day availability across Indianapolis and the surrounding suburbs. Weekends included — just book online or call us at 317-489-0644.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Do you bring your own supplies?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes — every team arrives fully equipped with professional-grade products, microfiber cloths, vacuums, and mops. If you'd prefer we use your own supplies (eco, fragrance-free, etc.), just let us know.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Are you insured and background checked?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Every Novo's team member is fully background checked and our company carries full liability insurance on every single job. Your home and your peace of mind are covered.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>What if I'm not happy with the clean?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Just tell us within 24 hours and we'll send a team back to re-clean — free of charge. Our satisfaction guarantee is non-negotiable.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Do I need to be home?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Not at all. Most of our clients leave a key, code, or lockbox. Every arrival is GPS-verified and timestamped, so you'll always know when we showed up and how long we stayed.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>How do I pay?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">We accept all major credit cards, ACH, Apple Pay, and Google Pay. You're charged after the clean is complete — never before.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Which areas do you cover?</span><span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Indianapolis and surrounding areas including Carmel, Fishers, Zionsville, Westfield, Greenwood, Noblesville, and Brownsburg. Not sure if you're in our zone? Call us at 317-489-0644.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="section-inner">
+    <p class="section-label fade-up">Why Novo's</p>
+    <h2 class="section-title fade-up">BUILT DIFFERENT.</h2>
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--lime)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3 class="why-title">WEEKEND AVAILABILITY</h3>
+        <p class="why-desc">We work when you need us — Saturdays and Sundays included.</p>
+      </div>
+      <div class="why-card fade-up" style="transition-delay:0.1s">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--lime)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <h3 class="why-title">FLAT RATE PRICING</h3>
+        <p class="why-desc">Know exactly what you pay before we arrive. No surprises, ever.</p>
+      </div>
+      <div class="why-card fade-up" style="transition-delay:0.2s">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--lime)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></div>
+        <h3 class="why-title">60-SECOND BOOKING</h3>
+        <p class="why-desc">Book your clean faster than it takes to find a sponge.</p>
+      </div>
+      <div class="why-card fade-up" style="transition-delay:0.05s">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--lime)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+        <h3 class="why-title">GPS VERIFIED</h3>
+        <p class="why-desc">Every arrival is tracked and timestamped. Accountability built in.</p>
+      </div>
+      <div class="why-card fade-up" style="transition-delay:0.15s">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--lime)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3 class="why-title">FULLY INSURED</h3>
+        <p class="why-desc">Full liability coverage on every job. Your home is protected.</p>
+      </div>
+      <div class="why-card fade-up" style="transition-delay:0.25s">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--lime)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h3 class="why-title">SATISFACTION GUARANTEE</h3>
+        <p class="why-desc">Not happy? We return and re-clean — free of charge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-inner">
+    <p class="section-label fade-up">Reviews</p>
+    <h2 class="section-title fade-up">INDY LOVES US.</h2>
+    <div class="reviews-grid">
+      <div class="review-card fade-up">
+        <div class="stars">
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Booked on a Sunday morning and they were at my door by noon. Kitchen and bathrooms look better than when I moved in. Worth every penny."</p>
+        <div>
+          <p class="reviewer-name">Ashley M.</p>
+          <p class="reviewer-loc">Carmel, IN</p>
+        </div>
+      </div>
+      <div class="review-card fade-up" style="transition-delay:0.1s">
+        <div class="stars">
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Used them for a move-out clean and got my full deposit back. Professional, thorough, and fast. Already booked them for my new place."</p>
+        <div>
+          <p class="reviewer-name">Marcus T.</p>
+          <p class="reviewer-loc">Fishers, IN</p>
+        </div>
+      </div>
+      <div class="review-card fade-up" style="transition-delay:0.2s">
+        <div class="stars">
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Tried three other services — none come close. They clean the things others ignore: baseboards, vents, behind the toilet. Incredible."</p>
+        <div>
+          <p class="reviewer-name">Danielle R.</p>
+          <p class="reviewer-loc">Zionsville, IN</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST / OUR PROMISE -->
+<section id="trust">
+  <div class="trust-inner">
+    <div class="trust-badges">
+      <p class="section-label" style="color:#0D0D0D; opacity:0.45;">Our Promise</p>
+      <h2 class="section-title" style="color:var(--black); font-size:clamp(38px,4.5vw,68px); margin-bottom:12px;">YOU'RE IN<br />GOOD HANDS.</h2>
+      <div class="trust-badge fade-up">
+        <div class="badge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C8F400" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2"/></svg></div>
+        <div>
+          <p class="badge-text-head">Background Checked</p>
+          <p class="badge-text-sub">Every team member is screened before their first job.</p>
+        </div>
+      </div>
+      <div class="trust-badge fade-up" style="transition-delay:0.1s">
+        <div class="badge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C8F400" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div>
+          <p class="badge-text-head">Fully Insured</p>
+          <p class="badge-text-sub">Liability coverage on every single job, no exceptions.</p>
+        </div>
+      </div>
+      <div class="trust-badge fade-up" style="transition-delay:0.2s">
+        <div class="badge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C8F400" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <div>
+          <p class="badge-text-head">Satisfaction Guarantee</p>
+          <p class="badge-text-sub">We'll return and re-clean for free if you're not 100% happy.</p>
+        </div>
+      </div>
+      <div class="trust-cta fade-up" style="transition-delay:0.3s">
+        <a href="#booking" class="btn-dark" id="trustBookBtn">Book Now</a>
+      </div>
+    </div>
+    <div>
+      <img src="novos cleaning mascot/18.png" alt="Novo's mascot scrubbing" class="trust-gecko" />
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <p class="footer-brand-name">NOVO'S</p>
+        <p class="footer-tagline">We Make It Feel Brand New</p>
+      </div>
+      <div>
+        <p class="footer-col-title">Contact</p>
+        <ul class="footer-links">
+          <li><a href="tel:3174890644">317-489-0644</a></li>
+          <li><a href="mailto:hello@novoscleans.com">hello@novoscleans.com</a></li>
+          <li><a href="https://novoscleans.com" target="_blank">novoscleans.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Services</p>
+        <ul class="footer-links">
+          <li><a href="#services">Standard Clean</a></li>
+          <li><a href="#services">Deep Clean</a></li>
+          <li><a href="#services">Move Clean</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Novo's Cleaning. Indianapolis, IN.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.78a4.85 4.85 0 01-1.01-.09z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal modal--booking" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    <h2 class="modal-title" id="modalTitle" style="margin-bottom:20px;">BOOK NOW</h2>
+    <p class="modal-body">Ready to get started? Call us at <strong>317-489-0644</strong> or email <strong>hello@novoscleans.com</strong> to schedule your clean.<br /><br />Same-day and next-day slots available. Weekends included.</p>
+    <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;">
+      <a href="tel:3174890644" class="btn-primary" style="font-size:15px; padding:16px 32px;">Call Now</a>
+      <a href="mailto:hello@novoscleans.com" class="btn-ghost" style="font-size:14px; padding:15px 26px; color:#0D0D0D; border-color:rgba(0,0,0,0.15);">Email Us</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Nav scroll
+  var nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 60); });
+
+  // Modal
+  var modal = document.getElementById('bookingModal');
+  function openModal() { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+  document.getElementById('heroBookBtn').addEventListener('click', function(e) { e.preventDefault(); openModal(); });
+  document.getElementById('navBookBtn').addEventListener('click', function(e) { e.preventDefault(); openModal(); });
+  var trustBtn = document.getElementById('trustBookBtn');
+  if (trustBtn) trustBtn.addEventListener('click', function(e) { e.preventDefault(); openModal(); });
+  document.querySelectorAll('.service-cta').forEach(function(el) { el.addEventListener('click', openModal); });
+  document.querySelectorAll('.service-card').forEach(function(el) { el.addEventListener('click', openModal); });
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.parentElement;
+      var ans = item.querySelector('.faq-a');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o) {
+        if (o !== item) { o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight = '0px'; }
+      });
+      if (isOpen) {
+        item.classList.remove('open');
+        ans.style.maxHeight = '0px';
+      } else {
+        item.classList.add('open');
+        ans.style.maxHeight = ans.querySelector('.faq-a-inner').offsetHeight + 'px';
+      }
+    });
+  });
+
+  // Our Work gallery — coverflow
+  // Replace these placeholder srcs with your real upload paths:
+  //   work1: uploads/_.jpeg
+  //   work2: uploads/interior-shot-luxurious-house-dining-room.jpg
+  //   work3: uploads/christian-mackie-cc0Gg3BegjE-unsplash.jpg
+  //   work4: uploads/pexels-pixabay-262048.jpg
+  //   work5: uploads/steven-ungermann-d-zkUcfJbWw-unsplash.jpg
+  //   work6: uploads/Cleaning.jpeg
+  //   work7: uploads/Spotless Cleaning.jpeg
+  var workImages = [
+    { src: 'https://production-next-images-cdn.thumbtack.com/i/473524147686113307/width/2200.webp', tag: 'Living Room' },
+    { src: 'https://production-next-images-cdn.thumbtack.com/i/470504464343171078/width/2200.webp', tag: 'Bathroom' },
+    { src: '5a290bc74801.jpg', tag: 'Living Room' },
+    { src: 'a9b78047e927.jpg', tag: 'Bathroom' },
+    { src: 'd90357ab661e.jpg', tag: 'Bathroom' }
+  ];
+
+  var workStage = document.getElementById('workStage');
+  var workCounter = document.getElementById('workCounter');
+  var workIdx = 0;
+
+  function buildWorkCards() {
+    workStage.innerHTML = '';
+    workImages.forEach(function(it, i) {
+      var d = document.createElement('div');
+      d.className = 'work-card';
+      d.dataset.idx = i;
+      d.innerHTML = '<img src="' + it.src + '" alt="Novo\'s clean ' + it.tag + '" /><span class="work-tag">' + it.tag + '</span>';
+      d.addEventListener('click', function() { workIdx = i; layoutWork(); });
+      workStage.appendChild(d);
+    });
+    layoutWork();
+  }
+
+  function layoutWork() {
+    var cards = workStage.querySelectorAll('.work-card');
+    var n = workImages.length;
+    cards.forEach(function(card, i) {
+      var rel = ((i - workIdx) % n + n) % n;
+      if (rel > n / 2) rel -= n;
+      var abs = Math.abs(rel);
+      var x = rel * 200;
+      var z = -abs * 180;
+      var rotY = rel * -22;
+      var scale = abs === 0 ? 1 : Math.max(0.6, 1 - abs * 0.14);
+      var opacity = abs > 2 ? 0 : 1;
+      var blur = abs === 0 ? 0 : Math.min(abs * 1.2, 3);
+      card.style.transform = 'translate3d(' + x + 'px, 0, ' + z + 'px) rotateY(' + rotY + 'deg) scale(' + scale + ')';
+      card.style.opacity = opacity;
+      card.style.filter = 'blur(' + blur + 'px)';
+      card.style.zIndex = 100 - abs;
+    });
+    var pad = function(n) { return n < 10 ? '0' + n : '' + n; };
+    workCounter.textContent = pad(workIdx + 1) + ' / ' + pad(n);
+  }
+
+  function shuffleWork() {
+    for (var i = workImages.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = workImages[i]; workImages[i] = workImages[j]; workImages[j] = tmp;
+    }
+    workIdx = 0;
+    buildWorkCards();
+    workStage.style.transition = 'none';
+    workStage.style.transform = 'rotateX(8deg) scale(0.96)';
+    setTimeout(function() {
+      workStage.style.transition = 'transform 0.6s cubic-bezier(.2,.7,.2,1)';
+      workStage.style.transform = '';
+    }, 30);
+  }
+
+  document.getElementById('workPrev').addEventListener('click', function() { workIdx = (workIdx - 1 + workImages.length) % workImages.length; layoutWork(); });
+  document.getElementById('workNext').addEventListener('click', function() { workIdx = (workIdx + 1) % workImages.length; layoutWork(); });
+  document.getElementById('workShuffle').addEventListener('click', shuffleWork);
+
+  // Drag / swipe on work gallery
+  var dragStart = null;
+  workStage.addEventListener('pointerdown', function(e) { dragStart = e.clientX; });
+  workStage.addEventListener('pointerup', function(e) {
+    if (dragStart === null) return;
+    var dx = e.clientX - dragStart;
+    if (Math.abs(dx) > 40) {
+      if (dx < 0) workIdx = (workIdx + 1) % workImages.length;
+      else workIdx = (workIdx - 1 + workImages.length) % workImages.length;
+      layoutWork();
+    }
+    dragStart = null;
+  });
+  buildWorkCards();
+
+  // Fade up on scroll
+  var fadeEls = document.querySelectorAll('.fade-up');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(function(el) { obs.observe(el); });
+</script>
+
+</body>
+</html>
