@@ -195,6 +195,78 @@ footer { background: var(--black); padding: 80px 0 40px; border-top: 1px solid #
 .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 
+/* ===================== MOBILE ===================== */
+@media (max-width: 768px) {
+
+  /* NAV — hide links, keep logo + Book Now */
+  nav { padding: 16px 20px; }
+  .nav-links li { display: none; }
+  .nav-links li:last-child { display: flex; }
+  .nav-links { gap: 0; }
+
+  /* HERO */
+  #hero { padding: 0 20px; padding-top: 100px; }
+  .hero-headline { font-size: clamp(52px, 14vw, 90px); }
+  .btn-primary { font-size: 15px; padding: 18px 36px; }
+  .hero-gecko { width: 100%; min-width: unset; border-radius: 0; }
+
+  /* SECTION SHARED */
+  .section-inner { padding: 0 20px; }
+
+  /* MARQUEE */
+  .marquee-item { font-size: 15px; padding: 0 20px; }
+
+  /* SERVICES */
+  #services { padding: 80px 0; }
+  .services-grid { grid-template-columns: 1fr; gap: 2px; }
+  .service-body { padding: 28px 24px 36px; }
+  .service-name { font-size: 30px; }
+
+  /* OUR WORK */
+  #work { padding: 80px 0; }
+  .work-stage { height: 440px; }
+  .work-card {
+    width: 82vw;
+    height: 400px;
+    margin: -200px 0 0 -41vw;
+  }
+  .work-controls { gap: 8px; }
+  .work-btn { width: 46px; height: 46px; }
+  .work-shuffle { padding: 0 16px; font-size: 11px; }
+
+  /* FAQ */
+  #faq { padding: 80px 0; }
+  .faq-wrap { padding: 0; }
+  .faq-q { font-size: clamp(18px, 5vw, 22px); }
+
+  /* WHY */
+  #why { padding: 80px 0; }
+  .why-grid { grid-template-columns: 1fr; }
+
+  /* TRUST */
+  #trust { padding: 60px 0; }
+  .trust-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 24px;
+    align-items: start;
+  }
+  .trust-gecko { max-width: 260px; }
+  .btn-dark { font-size: 15px; padding: 18px 36px; }
+
+  /* REVIEWS */
+  #reviews { padding: 80px 0; }
+  .reviews-grid { grid-template-columns: 1fr; }
+
+  /* FOOTER */
+  footer { padding: 56px 0 28px; }
+  .footer-inner { padding: 0 20px; }
+  .footer-top { grid-template-columns: 1fr; gap: 32px; padding-bottom: 36px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .footer-brand-name { font-size: 44px; }
+
+}
+
 /* IMAGE PLACEHOLDERS */
 .img-ph {
   width: 100%; height: 100%;
