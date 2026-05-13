@@ -654,7 +654,7 @@ footer { background: var(--black); padding: 80px 0 40px; border-top: 1px solid #
 
   // Modal — opens booking form in new tab
   var modal = document.getElementById('bookingModal');
-  function openModal() { window.open('https://mister-97.github.io/novoscleans-form/book.html', '_blank'); }
+  function openModal() { window.open('/book.html', '_blank'); }
   function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
   document.getElementById('heroBookBtn').addEventListener('click', function(e) { e.preventDefault(); openModal(); });
   document.getElementById('navBookBtn').addEventListener('click', function(e) { e.preventDefault(); openModal(); });

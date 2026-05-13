@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Get Your Instant Quote — Novo's Cleaning</title>
+<meta name="description" content="Get an instant cleaning quote from Novo's Cleaning. Tell us about your home and see your price in 60 seconds.">
+<link rel="canonical" href="https://novoscleans.com/book">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#0D0D0D;
+  --lime:#C8F400;
+  --white:#F5F5F0;
+  --text:#0D0D0D;
+  --text-light:rgba(13,13,13,0.45);
+  --pill-bg:rgba(13,13,13,0.06);
+  --pill-border:rgba(13,13,13,0.14);
+  --pill-hover:rgba(13,13,13,0.10);
+}
+html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+body{background:var(--lime);color:var(--text);display:flex;flex-direction:column;min-height:100vh;}
+
+.form-header{
+  background:var(--lime);border-bottom:1px solid rgba(13,13,13,0.12);
+  padding:14px 24px;display:flex;align-items:center;justify-content:space-between;
+}
+.form-header .back-link{
+  font-size:13px;font-weight:600;color:var(--text-light);
+  text-decoration:none;display:flex;align-items:center;gap:6px;
+}
+
+.progress-bar-wrap{height:3px;background:rgba(13,13,13,0.15);}
+.progress-bar{height:3px;background:var(--black);transition:width 0.4s ease;}
+
+.form-stage{
+  flex:1;display:flex;align-items:flex-start;justify-content:center;
+  padding:32px 24px;overflow:visible;
+}
+.slide-wrap{width:100%;max-width:580px;position:relative;min-height:420px;}
+
+.question{
+  position:absolute;top:0;left:0;width:100%;
+  opacity:0;transform:translateY(40px);pointer-events:none;
+  transition:opacity 0.35s ease,transform 0.35s ease;
+}
+.question.active{opacity:1;transform:translateY(0);pointer-events:all;position:relative;}
+
+.gecko-wrap{display:flex;justify-content:center;margin-bottom:20px;}
+.gecko-wrap img{
+  height:160px;width:auto;object-fit:contain;
+  filter:drop-shadow(0 8px 24px rgba(0,0,0,0.12));
+  user-select:none;pointer-events:none;
+}
+
+.q-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:26px;height:26px;border-radius:6px;
+  background:var(--black);color:#C8F400;
+  font-size:12px;font-weight:800;margin-right:10px;flex-shrink:0;
+}
+.q-label{
+  display:flex;align-items:center;
+  font-size:clamp(1.3rem,3.5vw,1.85rem);
+  font-weight:700;color:#0D0D0D !important;
+  margin-bottom:10px;line-height:1.25;
+}
+.q-sub{font-size:15px;color:var(--text-light);margin-bottom:26px;margin-left:36px;}
+
+.choices{display:flex;flex-direction:column;gap:10px;margin-left:36px;}
+.choice{
+  display:flex;align-items:center;gap:14px;
+  background:var(--pill-bg);border:1.5px solid var(--pill-border);
+  border-radius:100px;padding:13px 20px;
+  cursor:pointer;transition:background 0.15s,border-color 0.15s;
+  max-width:440px;user-select:none;
+}
+.choice:hover{background:var(--pill-hover);}
+.choice.selected{background:rgba(13,13,13,0.10);border-color:var(--black);}
+.choice-letter{
+  width:28px;height:28px;border-radius:50%;
+  border:1.5px solid rgba(13,13,13,0.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:var(--text-light);flex-shrink:0;
+}
+.choice.selected .choice-letter{background:var(--black);color:#C8F400;border-color:var(--black);}
+.choice-text{font-size:15px;font-weight:500;color:var(--text);}
+
+.num-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-left:36px;}
+.num-pill{
+  height:52px;background:var(--pill-bg);border:1.5px solid var(--pill-border);
+  border-radius:14px;display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:700;color:var(--text);cursor:pointer;transition:background 0.15s;
+}
+.num-pill:hover{background:var(--pill-hover);}
+.num-pill.selected{background:var(--black);border-color:var(--black);color:var(--lime);}
+
+.contact-fields{margin-left:36px;display:flex;flex-direction:column;gap:12px;}
+.contact-fields input{
+  background:var(--pill-bg);border:1.5px solid var(--pill-border);
+  border-radius:12px;padding:14px 18px;
+  font-size:15px;color:var(--text);outline:none;width:100%;max-width:440px;
+  transition:border-color 0.15s;font-family:inherit;
+}
+.contact-fields input:focus{border-color:var(--black);}
+.contact-fields input::placeholder{color:var(--text-light);}
+
+.btn-ok{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:24px;margin-left:36px;
+  background:var(--black);color:#C8F400;
+  border:none;border-radius:100px;
+  padding:14px 28px;font-size:15px;font-weight:800;
+  cursor:pointer;transition:opacity 0.15s,transform 0.1s;
+}
+.btn-ok:hover{opacity:0.88;transform:translateY(-1px);}
+.btn-ok .ok-hint{font-size:11px;opacity:0.6;margin-left:4px;}
+
+/* QUOTE */
+.quote-screen{max-width:540px;margin:0 auto;text-align:center;padding:10px 0;}
+.quote-badge{
+  display:inline-block;background:rgba(13,13,13,0.10);color:var(--black);
+  border:1.5px solid rgba(13,13,13,0.25);border-radius:100px;
+  padding:6px 18px;font-size:13px;font-weight:700;margin-bottom:16px;
+}
+.quote-screen h2{font-size:clamp(1.5rem,4vw,2rem);font-weight:800;color:var(--black);margin-bottom:6px;}
+.quote-screen .quote-sub{font-size:14px;color:var(--text-light);margin-bottom:20px;}
+.price-card{
+  background:rgba(13,13,13,0.06);border:1.5px solid rgba(13,13,13,0.12);
+  border-radius:24px;padding:22px;margin-bottom:14px;text-align:left;
+}
+.price-service-label{
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;
+  color:#C8F400;background:var(--black);border-radius:100px;
+  padding:4px 12px;display:inline-block;margin-bottom:12px;
+}
+.price-main{display:flex;align-items:flex-end;gap:10px;margin-bottom:4px;}
+.price-amount{font-size:clamp(2.4rem,8vw,3.4rem);font-weight:900;color:var(--black);line-height:1;}
+.price-label{font-size:15px;color:var(--text-light);padding-bottom:4px;}
+.price-meta{font-size:13px;color:var(--text-light);margin-bottom:14px;}
+.price-breakdown{display:flex;flex-direction:column;border-top:1px solid rgba(13,13,13,0.10);padding-top:14px;}
+.breakdown-row{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:14px;padding:6px 0;border-bottom:1px solid rgba(13,13,13,0.06);
+}
+.breakdown-row:last-child{border-bottom:none;}
+.breakdown-row .label{color:var(--text-light);}
+.breakdown-row .val{font-weight:600;color:var(--text);}
+.breakdown-total{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:11px 0 0;margin-top:6px;
+  border-top:2px solid rgba(13,13,13,0.15);
+  font-size:16px;font-weight:800;color:var(--black);
+}
+
+.trust-strip{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:14px;}
+.trust-item{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(13,13,13,0.07);border:1px solid rgba(13,13,13,0.10);
+  border-radius:100px;padding:7px 14px;font-size:12px;font-weight:600;color:var(--black);
+}
+
+.includes-section{
+  background:rgba(13,13,13,0.05);border:1.5px solid rgba(13,13,13,0.10);
+  border-radius:16px;padding:16px 18px;margin-bottom:14px;text-align:left;
+}
+.includes-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--black);margin-bottom:10px;}
+.includes-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.include-chip{
+  display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--black);
+  background:rgba(13,13,13,0.06);border:1px solid rgba(13,13,13,0.10);
+  border-radius:100px;padding:5px 12px;
+}
+
+.btn-book{
+  width:100%;background:var(--black);color:#C8F400;
+  border:none;border-radius:100px;
+  padding:18px 32px;font-size:17px;font-weight:800;
+  cursor:pointer;transition:opacity 0.15s,transform 0.1s;margin-bottom:10px;
+}
+.btn-book:hover{opacity:0.88;transform:translateY(-1px);}
+.btn-edit{background:transparent;border:none;color:var(--text-light);font-size:13px;cursor:pointer;text-decoration:underline;}
+.no-charge-note{
+  font-size:12px;color:var(--text-light);margin-top:12px;
+  background:rgba(13,13,13,0.05);border-radius:10px;padding:10px 14px;
+  text-align:left;line-height:1.6;
+}
+
+/* CONFIRM */
+.confirm-screen{max-width:460px;margin:0 auto;text-align:center;}
+.confirm-icon{
+  width:72px;height:72px;border-radius:50%;background:rgba(13,13,13,0.10);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px;
+}
+.confirm-screen h2{font-size:1.7rem;font-weight:800;color:var(--black);margin-bottom:10px;}
+.confirm-screen p{font-size:15px;color:var(--text-light);line-height:1.7;margin-bottom:8px;}
+.confirm-detail{
+  background:rgba(13,13,13,0.06);border:1.5px solid rgba(13,13,13,0.10);
+  border-radius:16px;padding:18px 22px;margin:16px 0;text-align:left;
+}
+.confirm-detail-row{
+  display:flex;justify-content:space-between;font-size:14px;padding:6px 0;
+  border-bottom:1px solid rgba(13,13,13,0.07);
+}
+.confirm-detail-row:last-child{border:none;}
+.confirm-detail-row .dl{color:var(--text-light);}
+.confirm-detail-row .dv{font-weight:600;color:var(--text);}
+
+/* FOOTER */
+.form-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px;border-top:1px solid rgba(13,13,13,0.12);
+}
+.nav-arrows{display:flex;gap:8px;}
+.nav-arrow{
+  width:38px;height:38px;border-radius:10px;
+  background:rgba(13,13,13,0.08);border:none;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--black);transition:background 0.15s;
+}
+.nav-arrow:hover:not(:disabled){background:rgba(13,13,13,0.16);}
+.nav-arrow:disabled{opacity:0.25;cursor:not-allowed;}
+.step-counter{font-size:12px;color:var(--text-light);white-space:nowrap;}
+.powered{font-size:11px;color:var(--text-light);white-space:nowrap;}
+
+
+.redirect-spinner{
+  width:20px;height:20px;border-radius:50%;
+  border:3px solid rgba(13,13,13,0.15);
+  border-top-color:#0D0D0D;
+  animation:spin 0.7s linear infinite;flex-shrink:0;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+@media(max-width:600px){
+  .q-label{font-size:1.2rem;}
+  .choices,.contact-fields,.num-grid,.btn-ok,.q-sub{margin-left:0;}
+  .choice{max-width:100%;}
+  .contact-fields input{max-width:100%;}
+  .form-stage{padding:20px 18px;}
+  .gecko-wrap img{height:130px;}
+  .powered{display:none;}
+}
+</style>
+</head>
+<body>
+
+<header class="form-header">
+  <a href="https://novoscleans.com/" style="text-decoration:none;">
+    <img src="images/novosclean.png" alt="Novo's Cleaning" style="height:38px;width:auto;display:block;">
+  </a>
+  <a href="https://novoscleans.com/" class="back-link">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to site
+  </a>
+</header>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progressBar" style="width:0%"></div>
+</div>
+
+<main class="form-stage">
+  <div class="slide-wrap">
+
+    <!-- STEP 1: CONTACT -->
+    <div class="question active" id="q-contact">
+      <div class="gecko-wrap">
+        <img src="images/gecko-peeking.png" alt="" draggable="false">
+      </div>
+      <div class="q-label"><span class="q-num">1</span> Let's start with you</div>
+      <div class="q-sub">Takes less than 60 seconds. We promise.</div>
+      <div class="contact-fields">
+        <input type="text" id="first-name"  placeholder="First name *"     autocomplete="given-name">
+        <input type="tel"  id="phone"        placeholder="Phone number *"   autocomplete="tel">
+        <input type="text" id="address"      placeholder="Street address *" autocomplete="street-address">
+        <input type="text" id="city-zip"     placeholder="City, Zip *"      autocomplete="postal-code">
+      </div>
+      <button class="btn-ok" onclick="nextStep()">Let's go <span class="ok-hint">↵</span></button>
+    </div>
+
+    <!-- STEP 2: SERVICE -->
+    <div class="question" id="q1">
+      <div class="gecko-wrap">
+        <img src="images/monty_bucket.png" alt="" draggable="false">
+      </div>
+      <div class="q-label"><span class="q-num">2</span> What service do you need?</div>
+      <div class="q-sub">Pick the one that fits best.</div>
+      <div class="choices" id="q1-choices">
+        <div class="choice" data-val="Regular cleaning" onclick="selectChoice(this,'q1')">
+          <div class="choice-letter">A</div><span class="choice-text">Regular house cleaning</span>
+        </div>
+        <div class="choice" data-val="Deep cleaning" onclick="selectChoice(this,'q1')">
+          <div class="choice-letter">B</div><span class="choice-text">Deep cleaning</span>
+        </div>
+        <div class="choice" data-val="Move in/out cleaning" onclick="selectChoice(this,'q1')">
+          <div class="choice-letter">C</div><span class="choice-text">Move in / move out cleaning</span>
+        </div>
+      </div>
+      <button class="btn-ok" onclick="nextStep()">OK <span class="ok-hint">↵</span></button>
+    </div>
+
+    <!-- STEP 3: BEDROOMS -->
+    <div class="question" id="q2">
+      <div class="gecko-wrap">
+        <img src="images/monty_vacuum.png" alt="" draggable="false">
+      </div>
+      <div class="q-label"><span class="q-num">3</span> How many bedrooms?</div>
+      <div class="q-sub">Including guest rooms and home offices.</div>
+      <div class="num-grid" id="q2-choices">
+        <div class="num-pill" data-val="1" onclick="selectNum(this,'q2')">1</div>
+        <div class="num-pill" data-val="2" onclick="selectNum(this,'q2')">2</div>
+        <div class="num-pill" data-val="3" onclick="selectNum(this,'q2')">3</div>
+        <div class="num-pill" data-val="4" onclick="selectNum(this,'q2')">4</div>
+        <div class="num-pill" data-val="5" onclick="selectNum(this,'q2')">5+</div>
+      </div>
+      <button class="btn-ok" onclick="nextStep()">OK <span class="ok-hint">↵</span></button>
+    </div>
+
+    <!-- STEP 4: BATHROOMS -->
+    <div class="question" id="q3">
+      <div class="gecko-wrap">
+        <img src="images/gecko-scrubbing.png" alt="" draggable="false">
+      </div>
+      <div class="q-label"><span class="q-num">4</span> How many bathrooms?</div>
+      <div class="q-sub">Full and half baths combined.</div>
+      <div class="num-grid" id="q3-choices">
+        <div class="num-pill" data-val="1" onclick="selectNum(this,'q3')">1</div>
+        <div class="num-pill" data-val="2" onclick="selectNum(this,'q3')">2</div>
+        <div class="num-pill" data-val="3" onclick="selectNum(this,'q3')">3</div>
+        <div class="num-pill" data-val="4" onclick="selectNum(this,'q3')">4</div>
+        <div class="num-pill" data-val="5" onclick="selectNum(this,'q3')">5+</div>
+      </div>
+      <button class="btn-ok" onclick="nextStep()">OK <span class="ok-hint">↵</span></button>
+    </div>
+
+    <!-- STEP 5: RECENT CLEANING -->
+    <div class="question" id="q-recent">
+      <div class="gecko-wrap">
+        <img src="images/monty_gear.png" alt="" draggable="false">
+      </div>
+      <div class="q-label"><span class="q-num">5</span> Professional cleaning in the last 3 months?</div>
+      <div class="q-sub">Helps us estimate the right amount of time.</div>
+      <div class="choices" id="q-recent-choices">
+        <div class="choice" data-val="Yes" onclick="selectChoice(this,'q-recent')">
+          <div class="choice-letter">A</div><span class="choice-text">Yes, recently cleaned</span>
+        </div>
+        <div class="choice" data-val="No" onclick="selectChoice(this,'q-recent')">
+          <div class="choice-letter">B</div><span class="choice-text">No, it's been a while</span>
+        </div>
+      </div>
+      <button class="btn-ok" onclick="nextStep()">OK <span class="ok-hint">↵</span></button>
+    </div>
+
+    <!-- STEP 6: HOW SOON (lead score) -->
+    <div class="question" id="q-soon">
+      <div class="gecko-wrap">
+        <img src="images/monty_superhero.png" alt="" draggable="false">
+      </div>
+      <div class="q-label"><span class="q-num">6</span> How soon do you need it?</div>
+      <div class="q-sub">Helps us prioritize your booking.</div>
+      <div class="choices" id="q-soon-choices">
+        <div class="choice" data-val="This week" data-score="hot" onclick="selectChoice(this,'q-soon')">
+          <div class="choice-letter">A</div>
+          <span class="choice-text">This week</span>
+        </div>
+        <div class="choice" data-val="Within 2 weeks" data-score="warm" onclick="selectChoice(this,'q-soon')">
+          <div class="choice-letter">B</div>
+          <span class="choice-text">Within the next 2 weeks</span>
+        </div>
+        <div class="choice" data-val="Just exploring" data-score="cold" onclick="selectChoice(this,'q-soon')">
+          <div class="choice-letter">C</div>
+          <span class="choice-text">Just exploring for now</span>
+        </div>
+      </div>
+      <button class="btn-ok" onclick="nextStep()">OK <span class="ok-hint">↵</span></button>
+    </div>
+
+    <!-- QUOTE SCREEN -->
+    <div class="question" id="q-quote">
+      <div class="quote-screen">
+        <div class="quote-badge">Your quote is ready</div>
+        <h2 id="quote-headline">Here's your price</h2>
+        <p class="quote-sub" id="quote-sub"></p>
+        <div class="price-card">
+          <div class="price-service-label" id="quote-service-label">Regular Cleaning</div>
+          <div class="price-main">
+            <div class="price-amount" id="quote-price">$149</div>
+            <div class="price-label">one-time clean</div>
+          </div>
+          <div class="price-meta" id="quote-home-meta">3 bed · 2 bath</div>
+          <div class="price-breakdown" id="price-breakdown"></div>
+          <div class="breakdown-total" id="breakdown-total" style="display:none;">
+            <span>Your total</span><span id="breakdown-total-val"></span>
+          </div>
+        </div>
+        <div class="trust-strip">
+          <div class="trust-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            Card on file
+          </div>
+          <div class="trust-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            No charge until job is done
+          </div>
+          <div class="trust-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            Cancel anytime
+          </div>
+        </div>
+        <div class="includes-section">
+          <div class="includes-title">What's included</div>
+          <div class="includes-grid" id="includes-grid"></div>
+        </div>
+        <button class="btn-book" onclick="acceptQuote()">Confirm &amp; Book My Clean →</button>
+        <br>
+        <button class="btn-edit" onclick="goToStep('q-contact')">← Edit my answers</button>
+        <div class="no-charge-note">
+          We accept card on file — <strong>your card will not be charged until the job is complete.</strong> No surprises, ever.
+        </div>
+      </div>
+    </div>
+
+    <!-- CONFIRM SCREEN -->
+    <div class="question" id="q-confirm">
+      <div class="confirm-screen">
+        <div class="confirm-icon">✅</div>
+        <h2>You're booked, <span id="confirm-name">friend</span>!</h2>
+        <p>We've got your request. Expect a text from us shortly to lock in your time.</p>
+        <div class="confirm-detail" id="confirm-detail"></div>
+        <p style="font-size:13px;color:var(--text-light);">Questions? Text or call us at <strong style="color:var(--black);">(000) 000-0000</strong></p>
+      </div>
+    </div>
+
+    <!-- REDIRECT SCREEN -->
+    <div class="question" id="q-redirect">
+      <div style="max-width:460px;margin:0 auto;text-align:center;padding:40px 0;">
+        <div style="margin-bottom:28px;">
+          <img src="images/gecko-peeking.png" alt="" style="height:130px;width:auto;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.12));" draggable="false">
+        </div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;">
+          <div class="redirect-spinner"></div>
+          <span style="font-size:1.4rem;font-weight:800;color:#0D0D0D;">Redirecting...</span>
+        </div>
+        <p style="font-size:14px;color:var(--text-light);margin-bottom:32px;">Taking you to complete your booking.</p>
+        <div style="background:rgba(13,13,13,0.07);border:1.5px solid rgba(13,13,13,0.12);border-radius:16px;padding:16px 20px;font-size:13px;color:var(--black);line-height:1.7;text-align:left;">
+          <strong style="display:block;margin-bottom:4px;">A note on payment</strong>
+          We may ask to put a card on file to secure your booking — but we will <strong>not</strong> charge you until after the job is complete.
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</main>
+
+<footer class="form-footer">
+  <div class="nav-arrows">
+    <button class="nav-arrow" id="btnBack" onclick="prevStep()" disabled>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+    <button class="nav-arrow" id="btnNext" onclick="nextStep()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+  </div>
+  <span class="step-counter" id="stepCounter">1 / 6</span>
+  <span class="powered">Novo's Cleaning &mdash; We Make It Feel Brand New</span>
+</footer>
+
+<script>
+const GHL_WEBHOOK = '';
+
+let currentQId = 'q-contact';
+const A = {
+  firstName:'', phone:'', address:'', cityZip:'',
+  service:null, bedrooms:null, bathrooms:null,
+  recentCleaning:null, howSoon:null, leadScore:null
+};
+
+const FLOW = ['q-contact','q1','q2','q3','q-recent','q-soon'];
+
+function getNextId(){ const i=FLOW.indexOf(currentQId); return i>=0&&i<FLOW.length-1?FLOW[i+1]:null; }
+function getPrevId(){ const i=FLOW.indexOf(currentQId); return i>0?FLOW[i-1]:null; }
+function userStepNum(){ const s=FLOW.filter(id=>!['q-quote','q-confirm'].includes(id)); return s.indexOf(currentQId)+1; }
+function totalUserSteps(){ return FLOW.filter(id=>!['q-quote','q-confirm'].includes(id)).length; }
+
+const BASE={'1':135,'2':164,'3':194,'4':234,'5':274};
+const BATH={'1':0,'2':20,'3':40,'4':60,'5':80};
+const SVC={'Regular cleaning':0,'Deep cleaning':60,'Move in/out cleaning':80};
+
+function calcPrice(){
+  let base=(BASE[A.bedrooms||'2']||164)+(BATH[A.bathrooms||'1']||0)+(SVC[A.service]||0);
+  if(A.recentCleaning==='Yes') base=Math.round(base*0.9);
+  return base;
+}
+
+function updateProgress(){
+  const num=userStepNum(), tot=totalUserSteps();
+  document.getElementById('progressBar').style.width=(tot>0?((num-1)/tot)*100:0)+'%';
+  document.getElementById('stepCounter').textContent=num+' / '+tot;
+  document.getElementById('btnBack').disabled=FLOW.indexOf(currentQId)<=0;
+}
+
+function transition(fromId,toId,dir){
+  const from=document.getElementById(fromId);
+  if(from){
+    from.style.transition='opacity 0.26s ease,transform 0.26s ease';
+    from.style.opacity='0';
+    from.style.transform=dir==='forward'?'translateY(-28px)':'translateY(28px)';
+    from.style.pointerEvents='none';
+  }
+  setTimeout(()=>{
+    if(from){from.classList.remove('active');from.style='';}
+    const to=document.getElementById(toId);
+    if(to){
+      to.style.opacity='0';
+      to.style.transform=dir==='forward'?'translateY(28px)':'translateY(-28px)';
+      to.classList.add('active');
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        to.style.transition='opacity 0.30s ease,transform 0.30s ease';
+        to.style.opacity='1'; to.style.transform='translateY(0)';
+        const inp=to.querySelector('input');
+        if(inp) setTimeout(()=>inp.focus(),50);
+      }));
+      setTimeout(()=>{to.style='';},380);
+    }
+  },260);
+}
+
+function goToStep(id){ const f=currentQId; currentQId=id; updateProgress(); transition(f,id,'forward'); }
+
+function nextStep(){
+  if(!validateStep()) return;
+  collectStep();
+  const toId=getNextId();
+  if(!toId){
+    saveLead('');
+    redirectToBookingKoala();
+    return;
+  }
+  const fromId=currentQId; currentQId=toId;
+  updateProgress(); transition(fromId,toId,'forward');
+}
+
+function prevStep(){
+  const toId=getPrevId(); if(!toId) return;
+  const fromId=currentQId; currentQId=toId;
+  updateProgress(); transition(fromId,toId,'back');
+}
+
+function validateStep(){
+  if(currentQId==='q-contact'){
+    const fn=document.getElementById('first-name').value.trim();
+    const ph=document.getElementById('phone').value.trim();
+    const ad=document.getElementById('address').value.trim();
+    const cz=document.getElementById('city-zip').value.trim();
+    if(!fn||!ph||!ad||!cz){shake('q-contact');return false;}
+  }
+  if(currentQId==='q1'&&!A.service){shake('q1');return false;}
+  if(currentQId==='q2'&&!A.bedrooms){shake('q2');return false;}
+  if(currentQId==='q3'&&!A.bathrooms){shake('q3');return false;}
+  if(currentQId==='q-recent'&&!A.recentCleaning){shake('q-recent');return false;}
+  if(currentQId==='q-soon'&&!A.howSoon){shake('q-soon');return false;}
+  return true;
+}
+
+function shake(qid){
+  const el=document.getElementById(qid); if(!el) return;
+  el.style.transform='translateX(-8px)';
+  setTimeout(()=>{el.style.transform='translateX(8px)';},80);
+  setTimeout(()=>{el.style.transform='translateX(-4px)';},160);
+  setTimeout(()=>{el.style.transform='translateX(0)';},240);
+}
+
+function collectStep(){
+  if(currentQId==='q-contact'){
+    A.firstName=document.getElementById('first-name').value.trim();
+    A.phone=document.getElementById('phone').value.trim();
+    A.address=document.getElementById('address').value.trim();
+    A.cityZip=document.getElementById('city-zip').value.trim();
+  }
+  saveToStorage();
+}
+
+function selectChoice(el,qid){
+  document.querySelectorAll('#'+qid+'-choices .choice').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  const val=el.dataset.val;
+  if(qid==='q1') A.service=val;
+  if(qid==='q-recent') A.recentCleaning=val;
+  if(qid==='q-soon'){A.howSoon=val;A.leadScore=el.dataset.score;}
+  saveToStorage();
+  setTimeout(()=>nextStep(),300);
+}
+
+function selectNum(el,qid){
+  document.querySelectorAll('#'+qid+'-choices .num-pill').forEach(p=>p.classList.remove('selected'));
+  el.classList.add('selected');
+  if(qid==='q2') A.bedrooms=el.dataset.val;
+  if(qid==='q3') A.bathrooms=el.dataset.val;
+  saveToStorage();
+  setTimeout(()=>nextStep(),300);
+}
+
+const SERVICE_INCLUDES={
+  'Regular cleaning':['Dusting all surfaces','Vacuum &amp; mop floors','Kitchen surfaces &amp; sink','Bathrooms scrubbed','Trash emptied','High-touch areas wiped'],
+  'Deep cleaning':['Everything in standard','Inside oven &amp; fridge','Inside cabinets','Baseboards &amp; window sills','Behind/under furniture','Grout scrubbing'],
+  'Move in/out cleaning':['Top-to-bottom clean','Inside all appliances','Inside cabinets &amp; drawers','Baseboards &amp; window sills','Bathrooms deep scrub','All floors cleaned'],
+};
+
+function renderQuote(){
+  const total=calcPrice();
+  const isDeep=['Deep cleaning','Move in/out cleaning'].includes(A.service);
+  const rangeLow=total, rangeHigh=Math.ceil(total*1.30/10)*10;
+
+  document.getElementById('quote-headline').textContent='Here\'s your quote, '+(A.firstName||'friend')+'!';
+  document.getElementById('quote-sub').textContent=A.address+', '+A.cityZip;
+  document.getElementById('quote-service-label').textContent=A.service||'Cleaning';
+  document.getElementById('quote-home-meta').textContent=(A.bedrooms||'2')+' bed · '+(A.bathrooms||'1')+' bath';
+  document.getElementById('quote-price').textContent=isDeep?'$'+rangeLow+' – $'+rangeHigh:'$'+total;
+
+  const baseAmt=(BASE[A.bedrooms||'2']||164)+(BATH[A.bathrooms||'1']||0);
+  let rows=row((A.bedrooms||'2')+' bed, '+(A.bathrooms||'1')+' bath','$'+baseAmt);
+  let hasExtra=false;
+  if(SVC[A.service]){rows+=row(A.service,'+$'+SVC[A.service]);hasExtra=true;}
+  if(A.recentCleaning==='Yes'){rows+=row('Recently cleaned discount','-$'+Math.round(total/0.9*0.1),true);hasExtra=true;}
+  if(isDeep) rows+=row('Final price confirmed before visit','',false,true);
+  document.getElementById('price-breakdown').innerHTML=rows;
+
+  const totalEl=document.getElementById('breakdown-total');
+  if(hasExtra&&!isDeep){totalEl.style.display='flex';document.getElementById('breakdown-total-val').textContent='$'+total;}
+  else totalEl.style.display='none';
+
+  const inc=SERVICE_INCLUDES[A.service]||SERVICE_INCLUDES['Regular cleaning'];
+  document.getElementById('includes-grid').innerHTML=inc.map(i=>
+    `<div class="include-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>${i}</div>`
+  ).join('');
+}
+
+function row(label,val,isDiscount,isNote){
+  if(isNote) return `<div class="breakdown-row" style="font-style:italic;opacity:0.7;font-size:12px;"><span class="label">${label}</span></div>`;
+  return `<div class="breakdown-row${isDiscount?' discount':''}"><span class="label">${label}</span><span class="val">${val}</span></div>`;
+}
+
+async function acceptQuote(){
+  const total=calcPrice();
+  const isDeep=['Deep cleaning','Move in/out cleaning'].includes(A.service);
+  const quoteStr=isDeep?'$'+total+' – $'+Math.ceil(total*1.30/10)*10:'$'+total;
+
+  const fromId=currentQId; currentQId='q-confirm';
+  transition(fromId,'q-confirm','forward');
+  document.getElementById('confirm-name').textContent=A.firstName||'friend';
+  document.getElementById('confirm-detail').innerHTML=`
+    <div class="confirm-detail-row"><span class="dl">Service</span><span class="dv">${A.service}</span></div>
+    <div class="confirm-detail-row"><span class="dl">Home</span><span class="dv">${A.bedrooms||'?'} bed · ${A.bathrooms||'?'} bath</span></div>
+    <div class="confirm-detail-row"><span class="dl">Address</span><span class="dv">${A.address}</span></div>
+    <div class="confirm-detail-row"><span class="dl">Quote</span><span class="dv">${quoteStr}</span></div>
+    <div class="confirm-detail-row"><span class="dl">Phone</span><span class="dv">${A.phone}</span></div>
+  `;
+  document.getElementById('progressBar').style.width='100%';
+  document.getElementById('btnBack').disabled=true;
+  document.getElementById('btnNext').disabled=true;
+  await saveLead(quoteStr);
+}
+
+async function saveLead(quoteStr){
+  if(!GHL_WEBHOOK) return;
+  try{
+    await fetch(GHL_WEBHOOK,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        first_name:A.firstName,phone:A.phone,
+        address:A.address,city_zip:A.cityZip,
+        service:A.service,bedrooms:A.bedrooms,bathrooms:A.bathrooms,
+        recent_cleaning:A.recentCleaning,
+        how_soon:A.howSoon,lead_score:A.leadScore,
+        quote:quoteStr
+      })
+    });
+  } catch(e){console.warn('Webhook failed:',e);}
+}
+
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Enter'&&!['q-quote','q-confirm'].includes(currentQId)) nextStep();
+  const idx=['a','b','c'].indexOf(e.key.toLowerCase());
+  if(idx>=0){
+    const ch=document.querySelectorAll('#'+currentQId+'-choices .choice');
+    if(ch[idx]) ch[idx].click();
+  }
+});
+
+
+// ── BOOKING KOALA REDIRECT ───────────────────────────────────
+const BOOKING_KOALA_URL = 'https://novos.bookingkoala.com/booknow';
+
+function redirectToBookingKoala() {
+  const fromId = currentQId;
+  currentQId = 'q-redirect';
+  document.getElementById('progressBar').style.width = '100%';
+  document.getElementById('btnBack').disabled = true;
+  document.getElementById('btnNext').disabled = true;
+  transition(fromId, 'q-redirect', 'forward');
+
+  // Split "City, Zip" into separate fields
+  const cityZipParts = A.cityZip.split(',').map(s => s.trim());
+  const city = cityZipParts[0] || A.cityZip;
+  const zip  = cityZipParts[1] || '';
+
+  const params = new URLSearchParams({
+    fname:   A.firstName,
+    phone:   A.phone,
+    address: A.address,
+    city:    city,
+    zip:     zip,
+    notes:   A.service + ' | ' + (A.bedrooms||'') + ' bed / ' + (A.bathrooms||'') + ' bath | ' + A.howSoon,
+  });
+
+  setTimeout(() => {
+    window.location.href = BOOKING_KOALA_URL + '?' + params.toString();
+  }, 2500);
+}
+
+// ── LOCALSTORAGE ─────────────────────────────────────────────
+const LS_KEY = 'novos_lead';
+
+function saveToStorage() {
+  localStorage.setItem(LS_KEY, JSON.stringify({
+    firstName: A.firstName, phone: A.phone,
+    address: A.address, cityZip: A.cityZip,
+    service: A.service, bedrooms: A.bedrooms,
+    bathrooms: A.bathrooms, recentCleaning: A.recentCleaning, howSoon: A.howSoon
+  }));
+}
+
+function loadFromStorage() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+    if (saved.firstName) {
+      A.firstName = saved.firstName; A.phone = saved.phone;
+      A.address = saved.address; A.cityZip = saved.cityZip;
+      A.service = saved.service; A.bedrooms = saved.bedrooms;
+      A.bathrooms = saved.bathrooms; A.recentCleaning = saved.recentCleaning;
+      A.howSoon = saved.howSoon;
+      // Pre-fill contact inputs
+      if (saved.firstName)  document.getElementById('first-name').value = saved.firstName;
+      if (saved.phone)      document.getElementById('phone').value = saved.phone;
+      if (saved.address)    document.getElementById('address').value = saved.address;
+      if (saved.cityZip)    document.getElementById('city-zip').value = saved.cityZip;
+      // Re-select pills
+      if (saved.service) {
+        document.querySelectorAll('#q1-choices .choice').forEach(c => {
+          if (c.dataset.val === saved.service) c.classList.add('selected');
+        });
+      }
+      if (saved.bedrooms) {
+        document.querySelectorAll('#q2-choices .num-pill').forEach(p => {
+          if (p.dataset.val === saved.bedrooms) p.classList.add('selected');
+        });
+      }
+      if (saved.bathrooms) {
+        document.querySelectorAll('#q3-choices .num-pill').forEach(p => {
+          if (p.dataset.val === saved.bathrooms) p.classList.add('selected');
+        });
+      }
+      if (saved.recentCleaning) {
+        document.querySelectorAll('#q-recent-choices .choice').forEach(c => {
+          if (c.dataset.val === saved.recentCleaning) c.classList.add('selected');
+        });
+      }
+      if (saved.howSoon) {
+        document.querySelectorAll('#q-soon-choices .choice').forEach(c => {
+          if (c.dataset.val === saved.howSoon) c.classList.add('selected');
+        });
+      }
+    }
+  } catch(e) {}
+}
+
+loadFromStorage();
+updateProgress();
+</script>
+</body>
+</html>
