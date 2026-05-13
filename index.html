@@ -230,9 +230,18 @@ footer { background: var(--black); padding: 80px 0 40px; border-top: 1px solid #
     height: 400px;
     margin: -200px 0 0 -41vw;
   }
-  .work-controls { gap: 8px; }
+  .work-controls { gap: 0; justify-content: space-between; padding: 0 20px; }
   .work-btn { width: 46px; height: 46px; }
-  .work-shuffle { padding: 0 16px; font-size: 11px; }
+  .work-shuffle {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 12px;
+    color: var(--white);
+    opacity: 0.6;
+    width: auto;
+  }
+  .work-counter { padding: 0 12px; }
 
   /* FAQ */
   #faq { padding: 80px 0; }
