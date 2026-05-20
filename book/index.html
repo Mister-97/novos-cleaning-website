@@ -5,8 +5,6 @@
 <title>Get Your Instant Quote — Novo's Cleaning</title>
 <meta name="description" content="Get an instant cleaning quote from Novo's Cleaning. Tell us about your home and see your price in 60 seconds.">
 <link rel="canonical" href="https://novoscleans.com/book">
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -247,10 +245,7 @@ body{background:var(--lime);color:var(--text);display:flex;flex-direction:column
 
 <header class="form-header">
   <a href="https://novoscleans.com/" style="text-decoration:none;">
-    <span style="display:flex;flex-direction:column;line-height:1.1;">
-      <span style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:#0D0D0D;letter-spacing:0.05em;">NOVO'S</span>
-      <span style="font-family:sans-serif;font-size:8px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#0D0D0D;opacity:0.55;">CLEANING</span>
-    </span>
+    <img src="images/novosclean.png" alt="Novo's Cleaning" style="height:38px;width:auto;display:block;">
   </a>
   <a href="https://novoscleans.com/" class="back-link">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
@@ -470,7 +465,8 @@ body{background:var(--lime);color:var(--text);display:flex;flex-direction:column
 </footer>
 
 <script>
-const GHL_WEBHOOK = '';
+const GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/33eX4E0bBsIC3hM7Gm2g/webhook-trigger/0a61b226-66a2-4426-8fa9-8bb1851d6b84';
+const SHEETS_WEBHOOK = 'https://script.google.com/macros/s/AKfycbxuiZDY42v3Xo2haxqVQArBZCql3oHAYVt9xVkHcFYNvkeK47RyhVHUdBPSdenZYVT4/exec';
 
 let currentQId = 'q-contact';
 const A = {
@@ -531,12 +527,12 @@ function transition(fromId,toId,dir){
 
 function goToStep(id){ const f=currentQId; currentQId=id; updateProgress(); transition(f,id,'forward'); }
 
-function nextStep(){
+async function nextStep(){
   if(!validateStep()) return;
   collectStep();
   const toId=getNextId();
   if(!toId){
-    saveLead('');
+    await saveLead('');
     redirectToBookingKoala();
     return;
   }
@@ -666,20 +662,28 @@ async function acceptQuote(){
 }
 
 async function saveLead(quoteStr){
-  if(!GHL_WEBHOOK) return;
-  try{
-    await fetch(GHL_WEBHOOK,{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        first_name:A.firstName,phone:A.phone,
-        address:A.address,city_zip:A.cityZip,
-        service:A.service,bedrooms:A.bedrooms,bathrooms:A.bathrooms,
-        recent_cleaning:A.recentCleaning,
-        how_soon:A.howSoon,lead_score:A.leadScore,
-        quote:quoteStr
-      })
-    });
-  } catch(e){console.warn('Webhook failed:',e);}
+  const payload = JSON.stringify({
+    first_name:A.firstName, phone:A.phone,
+    address:A.address, city_zip:A.cityZip,
+    service:A.service, bedrooms:A.bedrooms, bathrooms:A.bathrooms,
+    recent_cleaning:A.recentCleaning,
+    how_soon:A.howSoon, lead_score:A.leadScore,
+    quote:quoteStr
+  });
+
+  const sends = [];
+
+  if(GHL_WEBHOOK) sends.push(
+    fetch(GHL_WEBHOOK, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:payload })
+      .catch(e => console.warn('GHL webhook failed:', e))
+  );
+
+  if(SHEETS_WEBHOOK) sends.push(
+    fetch(SHEETS_WEBHOOK, { method:'POST', headers:{'Content-Type':'text/plain'}, body:payload })
+      .catch(e => console.warn('Sheets webhook failed:', e))
+  );
+
+  await Promise.all(sends);
 }
 
 document.addEventListener('keydown',(e)=>{
