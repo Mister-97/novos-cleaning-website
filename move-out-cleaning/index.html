@@ -15,41 +15,177 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Move Out Cleaning Service",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Novo's Cleaning",
-    "telephone": "+13174890644",
-    "url": "https://novoscleans.com",
-    "address": {"@type": "PostalAddress", "addressLocality": "Indianapolis", "addressRegion": "IN", "addressCountry": "US"}
-  },
-  "areaServed": ["Indianapolis", "Carmel", "Fishers", "Zionsville", "Westfield", "Noblesville", "Brownsburg", "Whitestown", "Bargersville", "McCordsville", "Trafalgar", "Avon", "Plainfield", "Fortville", "New Palestine", "Greenfield", "Geist Reservoir"],
-  "description": "Move-out and move-in cleaning service for empty homes and rental properties in Indianapolis. Covers every surface inside and out including walls, inside all cabinets, appliances, and floors to pass landlord inspection.",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Move-Out Cleaning Includes",
-    "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Everything in deep cleaning"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Walls spot-cleaned"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "All cabinet interiors scrubbed"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Inside all appliances"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Light fixtures & switch plates wiped"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Closets swept and wiped"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Garage swept if applicable"}}
-    ]
-  },
-  "mainEntityOfPage": {
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type": "Question", "name": "What does a move-out cleaning include in Indianapolis?", "acceptedAnswer": {"@type": "Answer", "text": "Novo's Cleaning move-out service includes everything in a deep clean plus: spot-cleaning walls, inside all cabinets scrubbed, inside all appliances (oven, fridge, dishwasher), light fixtures and switch plates wiped, closets swept and wiped, and garage swept if applicable. It prepares the home to pass a landlord walkthrough."}},
-      {"@type": "Question", "name": "Will a move-out cleaning help me get my deposit back?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Novo's Cleaning move-out service is designed specifically to meet landlord and property manager standards in Indianapolis. We clean every surface that inspectors check, following the same standards landlords use."}},
-      {"@type": "Question", "name": "Do you clean empty homes and apartments?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Move-out cleaning is done on empty properties. All furniture should be removed before we arrive so we can clean under, behind, and inside everything without obstructions."}},
-      {"@type": "Question", "name": "How much does move-out cleaning cost in Indianapolis?", "acceptedAnswer": {"@type": "Answer", "text": "Novo's Cleaning offers flat-rate pricing for move-out cleaning in Indianapolis and surrounding areas. Price depends on square footage. Call 317-489-0644 or book online for an instant quote."}},
-      {"@type": "Question", "name": "Can you do a move-in cleaning for a new home?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely. Move-in cleaning is the same thorough service applied to a home before you move in, making sure it's spotless even if the previous owners or landlord claims it was cleaned. Great peace of mind before you bring your belongings in."}},
-      {"@type": "Question", "name": "What areas does Novo's Cleaning serve for move-out cleaning?", "acceptedAnswer": {"@type": "Answer", "text": "Novo's Cleaning provides move-out cleaning in Indianapolis, Carmel, Fishers, Westfield, Noblesville, Zionsville, Whitestown, Brownsburg, Avon, Plainfield, Bargersville, Geist Reservoir, Fortville, McCordsville, New Palestine, Greenfield, and Trafalgar, Indiana."}}
-    ]
-  }
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://novoscleans.com/#business",
+      "name": "Novo's Cleaning",
+      "telephone": "+13174890644",
+      "url": "https://novoscleans.com",
+      "image": "https://novoscleans.com/novos-og-image.png",
+      "priceRange": "$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Indianapolis",
+        "addressRegion": "IN",
+        "addressCountry": "US"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://novoscleans.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Move-Out Cleaning",
+          "item": "https://novoscleans.com/move-out-cleaning"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Move Out Cleaning Service",
+      "provider": {
+        "@id": "https://novoscleans.com/#business"
+      },
+      "areaServed": [
+        "Indianapolis",
+        "Carmel",
+        "Fishers",
+        "Zionsville",
+        "Westfield",
+        "Noblesville",
+        "Brownsburg",
+        "Whitestown",
+        "Bargersville",
+        "McCordsville",
+        "Trafalgar",
+        "Avon",
+        "Plainfield",
+        "Fortville",
+        "New Palestine",
+        "Greenfield",
+        "Geist Reservoir"
+      ],
+      "description": "Move-out and move-in cleaning service for empty homes and rental properties in Indianapolis. Covers every surface inside and out including walls, inside all cabinets, appliances, and floors to pass landlord inspection.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Move-Out Cleaning Includes",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Everything in deep cleaning"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Walls spot-cleaned"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "All cabinet interiors scrubbed"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Inside all appliances"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Light fixtures & switch plates wiped"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Closets swept and wiped"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Garage swept if applicable"
+            }
+          }
+        ]
+      },
+      "@id": "https://novoscleans.com/move-out-cleaning#primary"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://novoscleans.com/move-out-cleaning#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does a move-out cleaning include in Indianapolis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Novo's Cleaning move-out service includes everything in a deep clean plus: spot-cleaning walls, inside all cabinets scrubbed, inside all appliances (oven, fridge, dishwasher), light fixtures and switch plates wiped, closets swept and wiped, and garage swept if applicable. It prepares the home to pass a landlord walkthrough."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will a move-out cleaning help me get my deposit back?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Novo's Cleaning move-out service is designed specifically to meet landlord and property manager standards in Indianapolis. We clean every surface that inspectors check, following the same standards landlords use."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you clean empty homes and apartments?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Move-out cleaning is done on empty properties. All furniture should be removed before we arrive so we can clean under, behind, and inside everything without obstructions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does move-out cleaning cost in Indianapolis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Novo's Cleaning offers flat-rate pricing for move-out cleaning in Indianapolis and surrounding areas. Price depends on square footage. Call 317-489-0644 or book online for an instant quote."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you do a move-in cleaning for a new home?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. Move-in cleaning is the same thorough service applied to a home before you move in, making sure it's spotless even if the previous owners or landlord claims it was cleaned. Great peace of mind before you bring your belongings in."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What areas does Novo's Cleaning serve for move-out cleaning?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Novo's Cleaning provides move-out cleaning in Indianapolis, Carmel, Fishers, Westfield, Noblesville, Zionsville, Whitestown, Brownsburg, Avon, Plainfield, Bargersville, Geist Reservoir, Fortville, McCordsville, New Palestine, Greenfield, and Trafalgar, Indiana."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 <style>
@@ -161,6 +297,8 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
     <li><a href="/#work">Our Work</a></li>
     <li><a href="/#faq">FAQ</a></li>
     <li><a href="/#reviews">Reviews</a></li>
+    <li><a href="/areas">Areas We Serve</a></li>
+    <li><a href="/guides">Guides</a></li>
     <li><a href="/book" class="nav-cta">Book Now</a></li>
   </ul>
 </nav>

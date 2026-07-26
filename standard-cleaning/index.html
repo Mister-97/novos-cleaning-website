@@ -15,37 +15,147 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Standard Home Cleaning",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Novo's Cleaning",
-    "telephone": "+13174890644",
-    "url": "https://novoscleans.com",
-    "address": {"@type": "PostalAddress", "addressLocality": "Indianapolis", "addressRegion": "IN", "addressCountry": "US"}
-  },
-  "areaServed": ["Indianapolis", "Carmel", "Fishers", "Zionsville", "Westfield", "Noblesville", "Brownsburg", "Whitestown", "Bargersville", "McCordsville", "Trafalgar", "Avon", "Plainfield", "Fortville", "New Palestine", "Greenfield", "Geist Reservoir"],
-  "description": "Standard home cleaning service including kitchen surfaces, bathrooms, vacuuming, mopping, dusting all surfaces, and trash removal.",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Standard Cleaning Includes",
-    "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kitchen surfaces & sink cleaning"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Bathroom cleaning (2 included)"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Vacuuming & mopping all floors"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Dusting all surfaces"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Trash removal"}}
-    ]
-  },
-  "mainEntityOfPage": {
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type": "Question", "name": "What does a standard home cleaning include?", "acceptedAnswer": {"@type": "Answer", "text": "A standard cleaning from Novo's Cleaning includes: kitchen surfaces and sink, bathrooms (2 included), vacuuming and mopping all floors, dusting all surfaces, and trash removal."}},
-      {"@type": "Question", "name": "How often should I get a standard cleaning?", "acceptedAnswer": {"@type": "Answer", "text": "Most Indianapolis homeowners book standard cleaning every 2–4 weeks to maintain a consistently clean home."}},
-      {"@type": "Question", "name": "How much does standard home cleaning cost in Indianapolis?", "acceptedAnswer": {"@type": "Answer", "text": "Novo's Cleaning offers flat-rate pricing for standard home cleaning in Indianapolis. Call 317-489-0644 or book online for an instant quote."}},
-      {"@type": "Question", "name": "Do I need to be home during the cleaning?", "acceptedAnswer": {"@type": "Answer", "text": "No. Most Novo's clients provide a key, door code, or lockbox. Every arrival is GPS-verified and timestamped."}}
-    ]
-  }
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://novoscleans.com/#business",
+      "name": "Novo's Cleaning",
+      "telephone": "+13174890644",
+      "url": "https://novoscleans.com",
+      "image": "https://novoscleans.com/novos-og-image.png",
+      "priceRange": "$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Indianapolis",
+        "addressRegion": "IN",
+        "addressCountry": "US"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://novoscleans.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Standard Cleaning",
+          "item": "https://novoscleans.com/standard-cleaning"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Standard Home Cleaning",
+      "provider": {
+        "@id": "https://novoscleans.com/#business"
+      },
+      "areaServed": [
+        "Indianapolis",
+        "Carmel",
+        "Fishers",
+        "Zionsville",
+        "Westfield",
+        "Noblesville",
+        "Brownsburg",
+        "Whitestown",
+        "Bargersville",
+        "McCordsville",
+        "Trafalgar",
+        "Avon",
+        "Plainfield",
+        "Fortville",
+        "New Palestine",
+        "Greenfield",
+        "Geist Reservoir"
+      ],
+      "description": "Standard home cleaning service including kitchen surfaces, bathrooms, vacuuming, mopping, dusting all surfaces, and trash removal.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Standard Cleaning Includes",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Kitchen surfaces & sink cleaning"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Bathroom cleaning (2 included)"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Vacuuming & mopping all floors"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Dusting all surfaces"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Trash removal"
+            }
+          }
+        ]
+      },
+      "@id": "https://novoscleans.com/standard-cleaning#primary"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://novoscleans.com/standard-cleaning#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does a standard home cleaning include?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A standard cleaning from Novo's Cleaning includes: kitchen surfaces and sink, bathrooms (2 included), vacuuming and mopping all floors, dusting all surfaces, and trash removal."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often should I get a standard cleaning?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most Indianapolis homeowners book standard cleaning every 2–4 weeks to maintain a consistently clean home."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does standard home cleaning cost in Indianapolis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Novo's Cleaning offers flat-rate pricing for standard home cleaning in Indianapolis. Call 317-489-0644 or book online for an instant quote."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to be home during the cleaning?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Most Novo's clients provide a key, door code, or lockbox. Every arrival is GPS-verified and timestamped."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 <style>
@@ -151,6 +261,8 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
     <li><a href="/#work">Our Work</a></li>
     <li><a href="/#faq">FAQ</a></li>
     <li><a href="/#reviews">Reviews</a></li>
+    <li><a href="/areas">Areas We Serve</a></li>
+    <li><a href="/guides">Guides</a></li>
     <li><a href="/book" class="nav-cta">Book Now</a></li>
   </ul>
 </nav>
