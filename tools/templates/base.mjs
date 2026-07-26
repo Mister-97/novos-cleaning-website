@@ -1,0 +1,272 @@
+/**
+ * Shared page shell for generated pages.
+ *
+ * The CSS below is taken verbatim from the existing hand-built pages so generated
+ * pages are visually identical, plus a small number of additional classes for the
+ * new content blocks (checklists, prose, local-detail panels).
+ */
+
+export const SITE = {
+  origin: "https://novoscleans.com",
+  name: "Novo's Cleaning",
+  phone: "317-489-0644",
+  phoneE164: "+13174890644",
+  city: "Indianapolis",
+  region: "IN",
+  ogImage: "https://novoscleans.com/novos-og-image.png",
+}
+
+export const STYLES = `
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--black:#0D0D0D;--lime:#C8F400;--white:#F5F5F0;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:var(--font-body);}
+a{color:inherit;text-decoration:none;}
+nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:18px 48px;}
+.nav-logo-mark{display:flex;flex-direction:column;line-height:1.1;}
+.nav-logo-mark .logo-main{font-family:var(--font-display);font-size:26px;color:var(--lime);letter-spacing:0.05em;}
+.nav-logo-mark .logo-sub{font-size:8px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--lime);opacity:0.65;}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+.nav-links a{font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;opacity:0.55;transition:opacity 0.2s;}
+.nav-links a:hover{opacity:1;}
+.nav-cta{background:var(--lime)!important;color:var(--black)!important;opacity:1!important;padding:9px 20px;border-radius:100px;font-weight:600!important;}
+.nav-dropdown{position:relative;}
+.nav-dropdown>a::after{content:' ▾';font-size:10px;}
+.nav-dropdown-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#141414;border:1px solid #222;border-radius:12px;padding:6px;min-width:200px;opacity:0;visibility:hidden;transition:opacity 0.18s,visibility 0.18s;pointer-events:none;}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;pointer-events:all;}
+.nav-dropdown-menu a{display:block;padding:10px 14px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;opacity:0.55;border-radius:8px;transition:background 0.15s,opacity 0.15s;}
+.nav-dropdown-menu a:hover{background:#1e1e1e;opacity:1;}
+.hero{padding:100px 48px 80px;max-width:1000px;margin:0 auto;}
+.breadcrumb{font-size:12px;opacity:0.35;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;}
+.breadcrumb a{opacity:1;}
+.breadcrumb span{margin:0 8px;opacity:0.5;}
+h1{font-family:var(--font-display);font-size:clamp(52px,7vw,96px);line-height:0.95;letter-spacing:0.02em;color:var(--white);margin-bottom:24px;}
+h1 .lime{color:var(--lime);}
+.hero-sub{font-size:17px;font-weight:300;opacity:0.5;max-width:580px;line-height:1.65;margin-bottom:36px;}
+.btn-primary{background:var(--lime);color:var(--black);font-size:16px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:20px 48px;border-radius:100px;display:inline-block;transition:filter 0.2s,transform 0.15s;}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-2px);}
+.section{padding:80px 48px;max-width:1000px;margin:0 auto;}
+.section-label{font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;opacity:0.35;margin-bottom:14px;}
+h2{font-family:var(--font-display);font-size:clamp(38px,5vw,64px);line-height:1;letter-spacing:0.02em;margin-bottom:40px;}
+h3{font-family:var(--font-display);font-size:clamp(24px,3vw,34px);line-height:1.05;letter-spacing:0.02em;margin-bottom:16px;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:20px;}
+.svc-card{background:#141414;padding:28px 24px;}
+.svc-card .type{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--lime);margin-bottom:8px;}
+.svc-card .name{font-family:var(--font-display);font-size:26px;letter-spacing:0.02em;margin-bottom:10px;}
+.svc-card .desc{font-size:13px;font-weight:300;opacity:0.5;line-height:1.6;margin-bottom:16px;}
+.svc-card a{color:var(--lime);font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;}
+.faq-item{border-top:1px solid rgba(245,245,240,0.1);}
+.faq-item:last-child{border-bottom:1px solid rgba(245,245,240,0.1);}
+.faq-q{width:100%;background:transparent;border:none;color:var(--white);padding:24px 0;display:flex;justify-content:space-between;align-items:center;gap:24px;cursor:pointer;text-align:left;font-family:var(--font-display);font-size:clamp(18px,2vw,24px);letter-spacing:0.01em;}
+.faq-icon{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:rgba(200,244,0,0.08);display:flex;align-items:center;justify-content:center;color:var(--lime);transition:all 0.3s;}
+.faq-item.open .faq-icon{background:var(--lime);color:var(--black);transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.faq-a-inner{padding:0 0 24px;font-size:15px;line-height:1.7;color:rgba(245,245,240,0.65);font-weight:300;max-width:680px;}
+.cta-band{background:var(--lime);padding:80px 48px;text-align:center;}
+.cta-band h2{color:var(--black);font-family:var(--font-display);font-size:clamp(38px,5vw,72px);margin-bottom:12px;}
+.cta-band p{color:var(--black);opacity:0.6;font-size:15px;margin-bottom:32px;}
+.btn-dark{background:var(--black);color:var(--lime);font-size:16px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:20px 48px;border-radius:100px;display:inline-block;transition:filter 0.2s,transform 0.15s;}
+.btn-dark:hover{filter:brightness(1.15);transform:translateY(-2px);}
+.area-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+.area-pill{background:#141414;border:1px solid #222;padding:8px 18px;border-radius:100px;font-size:13px;font-weight:400;opacity:0.7;}
+.area-pill a{color:var(--lime);}
+footer{background:var(--black);border-top:1px solid #181818;padding:48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.footer-copy{font-size:12px;opacity:0.2;}
+.footer-nav{display:flex;gap:24px;}
+.footer-nav a{font-size:12px;opacity:0.4;transition:opacity 0.2s;}
+.footer-nav a:hover{opacity:1;}
+.prose{font-size:16px;font-weight:300;line-height:1.75;color:rgba(245,245,240,0.62);max-width:720px;}
+.prose p{margin-bottom:20px;}
+.prose p:last-child{margin-bottom:0;}
+.local-panel{background:#141414;border-left:2px solid var(--lime);padding:28px 32px;margin-top:32px;max-width:720px;}
+.local-panel .label{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--lime);margin-bottom:12px;}
+.local-panel p{font-size:15px;font-weight:300;line-height:1.7;color:rgba(245,245,240,0.62);}
+.check-list{list-style:none;margin-top:24px;max-width:720px;}
+.check-list li{position:relative;padding-left:30px;margin-bottom:14px;font-size:15px;font-weight:300;line-height:1.6;color:rgba(245,245,240,0.68);}
+.check-list li::before{content:'';position:absolute;left:0;top:7px;width:12px;height:12px;border-radius:50%;background:rgba(200,244,0,0.15);border:1px solid var(--lime);}
+.excl-list{list-style:none;margin-top:18px;max-width:720px;}
+.excl-list li{position:relative;padding-left:30px;margin-bottom:10px;font-size:14px;font-weight:300;color:rgba(245,245,240,0.4);}
+.excl-list li::before{content:'—';position:absolute;left:6px;opacity:0.5;}
+.meta-row{display:flex;flex-wrap:wrap;gap:32px;margin-top:28px;padding-top:28px;border-top:1px solid rgba(245,245,240,0.08);max-width:720px;}
+.meta-item .k{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;opacity:0.35;margin-bottom:6px;}
+.meta-item .v{font-size:14px;font-weight:400;color:rgba(245,245,240,0.7);}
+.link-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:24px;}
+.link-grid a{background:#141414;padding:18px 20px;font-size:13px;font-weight:400;color:rgba(245,245,240,0.7);transition:background 0.15s,color 0.15s;}
+.link-grid a:hover{background:#1b1b1b;color:var(--lime);}
+@media(max-width:768px){
+  nav{padding:16px 20px;}
+  .nav-links li:not(:last-child){display:none;}
+  .hero,.section{padding-left:20px;padding-right:20px;}
+  .services-grid{grid-template-columns:1fr;}
+  .link-grid{grid-template-columns:1fr;}
+  .cta-band{padding:60px 20px;}
+  .local-panel{padding:24px 20px;}
+  footer{padding:36px 20px;flex-direction:column;align-items:flex-start;}
+}
+`.trim()
+
+export const NAV = `<nav>
+  <a href="/" class="nav-logo">
+    <span class="nav-logo-mark"><span class="logo-main">NOVO'S</span><span class="logo-sub">CLEANING</span></span>
+  </a>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="/#services">Services</a>
+      <div class="nav-dropdown-menu">
+        <a href="/standard-cleaning">Standard Cleaning</a>
+        <a href="/deep-cleaning">Deep Cleaning</a>
+        <a href="/move-out-cleaning">Move-Out Cleaning</a>
+      </div>
+    </li>
+    <li><a href="/areas">Areas We Serve</a></li>
+    <li><a href="/guides">Guides</a></li>
+    <li><a href="/#faq">FAQ</a></li>
+    <li><a href="/book" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>`
+
+export const FOOTER = `<footer>
+  <p class="footer-copy">© 2026 Novo's Cleaning. Indianapolis, IN. <a href="tel:3174890644" style="color:inherit;">317-489-0644</a></p>
+  <nav class="footer-nav">
+    <a href="/">Home</a>
+    <a href="/areas">Areas</a>
+    <a href="/guides">Guides</a>
+    <a href="/standard-cleaning">Standard</a>
+    <a href="/deep-cleaning">Deep Clean</a>
+    <a href="/book">Book Now</a>
+  </nav>
+</footer>`
+
+export const FAQ_SCRIPT = `<script>
+document.querySelectorAll('.faq-q').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var item=btn.parentElement,ans=item.querySelector('.faq-a'),isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(o){if(o!==item){o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight='0px';}});
+    if(isOpen){item.classList.remove('open');ans.style.maxHeight='0px';}
+    else{item.classList.add('open');ans.style.maxHeight=ans.querySelector('.faq-a-inner').offsetHeight+'px';}
+  });
+});
+</script>`
+
+const PLUS_ICON = `<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>`
+
+export function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+}
+
+/** FAQ accordion markup. `faqs` is [{q, a}] where `a` may contain inline HTML. */
+export function renderFaqs(faqs) {
+  return `<div id="faqList">
+${faqs
+  .map(
+    (faq) => `    <div class="faq-item">
+      <button class="faq-q"><span>${escapeHtml(faq.q)}</span>${PLUS_ICON}</button>
+      <div class="faq-a"><div class="faq-a-inner">${faq.a}</div></div>
+    </div>`,
+  )
+  .join("\n")}
+  </div>`
+}
+
+export const TEL_LINK = `<a href="tel:3174890644" style="color:var(--lime);">317-489-0644</a>`
+
+/** Reusable LocalBusiness node, referenced by @id from every other node. */
+export function localBusinessNode() {
+  return {
+    "@type": "LocalBusiness",
+    "@id": `${SITE.origin}/#business`,
+    name: SITE.name,
+    telephone: SITE.phoneE164,
+    url: SITE.origin,
+    image: SITE.ogImage,
+    priceRange: "$$",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: SITE.city,
+      addressRegion: SITE.region,
+      addressCountry: "US",
+    },
+  }
+}
+
+export function breadcrumbNode(trail) {
+  return {
+    "@type": "BreadcrumbList",
+    itemListElement: trail.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: `${SITE.origin}${item.path}`,
+    })),
+  }
+}
+
+/**
+ * FAQPage as its own top-level node.
+ * The hand-built pages nested this inside `mainEntityOfPage`, which is not valid
+ * usage and cost the site FAQ rich results.
+ */
+export function faqNode(faqs, pageUrl) {
+  return {
+    "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: { "@type": "Answer", text: faq.plain ?? stripTags(faq.a) },
+    })),
+  }
+}
+
+function stripTags(html) {
+  return String(html)
+    .replace(/<[^>]*>/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+}
+
+/** Assemble a full HTML document. */
+export function page({ title, description, path, ogImage, schema, body }) {
+  const url = `${SITE.origin}${path}`
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>${escapeHtml(title)}</title>
+<meta name="description" content="${escapeHtml(description)}" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="${escapeHtml(title)}" />
+<meta property="og:description" content="${escapeHtml(description)}" />
+<meta property="og:url" content="${url}" />
+<meta property="og:image" content="${ogImage ?? SITE.ogImage}" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="${url}" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script type="application/ld+json">
+${JSON.stringify({ "@context": "https://schema.org", "@graph": schema }, null, 2)}
+</script>
+<style>
+${STYLES}
+</style>
+</head>
+<body>
+${NAV}
+
+${body}
+
+${FOOTER}
+
+${FAQ_SCRIPT}
+</body>
+</html>
+`
+}
