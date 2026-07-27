@@ -15,40 +15,169 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Deep Cleaning Service",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Novo's Cleaning",
-    "telephone": "+13174890644",
-    "url": "https://novoscleans.com",
-    "address": {"@type": "PostalAddress", "addressLocality": "Indianapolis", "addressRegion": "IN", "addressCountry": "US"}
-  },
-  "areaServed": ["Indianapolis", "Carmel", "Fishers", "Zionsville", "Westfield", "Noblesville", "Brownsburg", "Whitestown", "Bargersville", "McCordsville", "Trafalgar", "Avon", "Plainfield", "Fortville", "New Palestine", "Greenfield", "Geist Reservoir"],
-  "description": "Deep cleaning service that goes beyond standard cleaning. Includes inside oven, inside fridge, baseboards, vents, window sills, cabinet interiors, and detailed bathroom scrubbing.",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Deep Cleaning Includes",
-    "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Everything in standard cleaning"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Inside oven cleaning"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Inside refrigerator cleaning"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Baseboards scrubbed"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Vents & air return dusted"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Window sills & tracks cleaned"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cabinet interiors wiped"}}
-    ]
-  },
-  "mainEntityOfPage": {
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type": "Question", "name": "What does a deep cleaning include in Indianapolis?", "acceptedAnswer": {"@type": "Answer", "text": "Novo's Cleaning deep service includes everything in a standard clean plus: inside oven, inside refrigerator, baseboards scrubbed, vents and air returns dusted, window sills and tracks cleaned, and cabinet interiors wiped down."}},
-      {"@type": "Question", "name": "How long does a deep cleaning take?", "acceptedAnswer": {"@type": "Answer", "text": "A deep cleaning typically takes 3–6 hours depending on the size of the home and how long since the last thorough clean. First-time clients usually benefit most from starting with a deep clean."}},
-      {"@type": "Question", "name": "How much does a deep cleaning cost in Indianapolis?", "acceptedAnswer": {"@type": "Answer", "text": "Novo's Cleaning offers flat-rate pricing for deep cleaning in Indianapolis and surrounding areas. Call 317-489-0644 or book online for an instant quote based on your home's size."}},
-      {"@type": "Question", "name": "Should I get a deep cleaning before switching to regular cleanings?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Most clients start with a deep clean so the home is at a high baseline, then switch to bi-weekly or monthly standard cleanings to maintain it. It's the most cost-effective approach."}},
-      {"@type": "Question", "name": "What areas in Indianapolis does Novo's Cleaning serve for deep cleaning?", "acceptedAnswer": {"@type": "Answer", "text": "Novo's Cleaning provides deep cleaning services in Indianapolis, Carmel, Fishers, Westfield, Noblesville, Zionsville, Brownsburg, Whitestown, Avon, Plainfield, Bargersville, Geist Reservoir, Fortville, McCordsville, New Palestine, Greenfield, and Trafalgar."}}
-    ]
-  }
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://novoscleans.com/#business",
+      "name": "Novo's Cleaning",
+      "telephone": "+13174890644",
+      "url": "https://novoscleans.com",
+      "image": "https://novoscleans.com/novos-og-image.png",
+      "priceRange": "$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Indianapolis",
+        "addressRegion": "IN",
+        "addressCountry": "US"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://novoscleans.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Deep Cleaning",
+          "item": "https://novoscleans.com/deep-cleaning"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Deep Cleaning Service",
+      "provider": {
+        "@id": "https://novoscleans.com/#business"
+      },
+      "areaServed": [
+        "Indianapolis",
+        "Carmel",
+        "Fishers",
+        "Zionsville",
+        "Westfield",
+        "Noblesville",
+        "Brownsburg",
+        "Whitestown",
+        "Bargersville",
+        "McCordsville",
+        "Trafalgar",
+        "Avon",
+        "Plainfield",
+        "Fortville",
+        "New Palestine",
+        "Greenfield",
+        "Geist Reservoir"
+      ],
+      "description": "Deep cleaning service that goes beyond standard cleaning. Includes inside oven, inside fridge, baseboards, vents, window sills, cabinet interiors, and detailed bathroom scrubbing.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Deep Cleaning Includes",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Everything in standard cleaning"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Inside oven cleaning"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Inside refrigerator cleaning"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Baseboards scrubbed"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Vents & air return dusted"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Window sills & tracks cleaned"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cabinet interiors wiped"
+            }
+          }
+        ]
+      },
+      "@id": "https://novoscleans.com/deep-cleaning#primary"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://novoscleans.com/deep-cleaning#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does a deep cleaning include in Indianapolis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Novo's Cleaning deep service includes everything in a standard clean plus: inside oven, inside refrigerator, baseboards scrubbed, vents and air returns dusted, window sills and tracks cleaned, and cabinet interiors wiped down."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a deep cleaning take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A deep cleaning typically takes 3–6 hours depending on the size of the home and how long since the last thorough clean. First-time clients usually benefit most from starting with a deep clean."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does a deep cleaning cost in Indianapolis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Novo's Cleaning offers flat-rate pricing for deep cleaning in Indianapolis and surrounding areas. Call 317-489-0644 or book online for an instant quote based on your home's size."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I get a deep cleaning before switching to regular cleanings?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Most clients start with a deep clean so the home is at a high baseline, then switch to bi-weekly or monthly standard cleanings to maintain it. It's the most cost-effective approach."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What areas in Indianapolis does Novo's Cleaning serve for deep cleaning?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Novo's Cleaning provides deep cleaning services in Indianapolis, Carmel, Fishers, Westfield, Noblesville, Zionsville, Brownsburg, Whitestown, Avon, Plainfield, Bargersville, Geist Reservoir, Fortville, McCordsville, New Palestine, Greenfield, and Trafalgar."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 <style>
@@ -156,6 +285,8 @@ footer{background:var(--black);border-top:1px solid #181818;padding:48px;display
     <li><a href="/#work">Our Work</a></li>
     <li><a href="/#faq">FAQ</a></li>
     <li><a href="/#reviews">Reviews</a></li>
+    <li><a href="/areas">Areas We Serve</a></li>
+    <li><a href="/guides">Guides</a></li>
     <li><a href="/book" class="nav-cta">Book Now</a></li>
   </ul>
 </nav>

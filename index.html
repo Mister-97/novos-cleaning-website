@@ -20,47 +20,34 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Novo's Cleaning",
-  "description": "Professional home cleaning services in Indianapolis, IN. Standard, deep, and move-in/out cleaning. Fully insured, background checked, GPS verified.",
-  "url": "https://novoscleans.com",
-  "telephone": "+13174890644",
-  "email": "hello@novoscleans.com",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Indianapolis",
-    "addressRegion": "IN",
-    "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 39.7684,
-    "longitude": -86.1581
-  },
-  "areaServed": [
-    "Indianapolis", "Carmel", "Fishers", "Zionsville",
-    "Westfield", "Noblesville", "Brownsburg", "Whitestown",
-    "Bargersville", "McCordsville", "Trafalgar", "Avon",
-    "Plainfield", "Fortville", "New Palestine", "Greenfield", "Geist Reservoir"
-  ],
-  "priceRange": "$$",
-  "openingHoursSpecification": [
+  "@graph": [
     {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-      "opens": "08:00",
-      "closes": "18:00"
+      "@type": "LocalBusiness",
+      "@id": "https://novoscleans.com/#business",
+      "name": "Novo's Cleaning",
+      "telephone": "+13174890644",
+      "url": "https://novoscleans.com",
+      "image": "https://novoscleans.com/novos-og-image.png",
+      "priceRange": "$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Indianapolis",
+        "addressRegion": "IN",
+        "addressCountry": "US"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://novoscleans.com/"
+        }
+      ]
     }
-  ],
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Cleaning Services",
-    "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Standard Home Cleaning", "description": "Kitchen surfaces, bathrooms, vacuuming, mopping, dusting, trash removal."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Deep Cleaning", "description": "Everything in standard plus inside oven & fridge, baseboards, vents, window sills, cabinet interiors."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Move In / Move Out Cleaning", "description": "Full deep clean for empty properties. Walls wiped, garage sweep, deposit-ready finish."}}
-    ]
-  }
+  ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -383,6 +370,8 @@ footer { background: var(--black); padding: 80px 0 40px; border-top: 1px solid #
     <li><a href="#work">Our Work</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#reviews">Reviews</a></li>
+    <li><a href="/areas">Areas We Serve</a></li>
+    <li><a href="/guides">Guides</a></li>
     <li><a href="#booking" class="nav-cta" id="navBookBtn">Book Now</a></li>
   </ul>
 </nav>
